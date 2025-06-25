@@ -1,251 +1,215 @@
 <!DOCTYPE html>
-<html lang="id" data-bs-theme="dark">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>[Nama Anda] - Portofolio</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <title>Rucirasatti Nariswana</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-color: #0d6efd;
+        --secondary-color: #3d8bfd;
+        --text-dark: #0d1b2a;
+        --text-muted: #6c757d;
+        --bg-light: #f9f9fb;
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: white;
+        color: var(--text-dark);
+        scroll-behavior: smooth;
+      }
+
+      nav.navbar {
+        background-color: white !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .section-padding {
+        padding: 100px 0;
+      }
+
+      h2.section-title {
+        font-weight: 700;
+        margin-bottom: 50px;
+        position: relative;
+      }
+
+      h2.section-title::after {
+        content: '';
+        width: 80px;
+        height: 4px;
+        background-color: var(--primary-color);
+        border-radius: 2px;
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* === PROJECT GRID STYLE === */
+      #projects {
+        background-color: var(--bg-light);
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .project-card {
+        background-color: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .project-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .project-img {
+        width: 100%;
+        padding-top: 56.25%;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .project-content {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .project-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+      }
+
+      .project-desc {
+        color: var(--text-muted);
+        flex-grow: 1;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+
+      .btn-outline-custom {
+        align-self: start;
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+        padding: 0.5rem 1.2rem;
+        border-radius: 50px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .btn-outline-custom:hover {
+        background-color: var(--primary-color);
+        color: #fff;
+      }
+
+      footer {
+        background-color: var(--bg-light);
+        padding: 50px 0;
+        text-align: center;
+      }
+
+      footer .social-icons a {
+        font-size: 1.8rem;
+        margin: 0 15px;
+        color: var(--text-muted);
+        transition: color 0.3s;
+      }
+
+      footer .social-icons a:hover {
+        color: var(--primary-color);
+      }
+
+      footer .copyright {
+        margin-top: 20px;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+    </style>
   </head>
-  <body data-bs-spy="scroll" data-bs-target="#navbar">
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#hero">[NamaAnda]</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <a class="navbar-brand fw-bold" href="#">Portofolio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">Tentang</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#projects">Proyek</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Kontak</a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="#about">Tentang</a></li>
+            <li class="nav-item"><a class="nav-link" href="#projects">Proyek</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <section id="hero" class="hero">
+    <!-- Hero -->
+    <section id="hero" class="section-padding text-center">
       <div class="container">
-        <h1 class="display-4 fw-bold">[Nama Anda]</h1>
-        <p class="lead mt-3 text-light-50">
-          [Deskripsi Singkat Anda, misalnya: Web Developer | Data Analyst]
-        </p>
-        <a href="#about" class="btn btn-custom btn-lg mt-4"
-          >Selengkapnya Tentang Saya</a
-        >
+        <h1 class="display-4 fw-bold">Rucirasatti Nariswana</h1>
+        <p class="lead mt-3">Web Developer | Machine Learning & AI Enthusiast</p>
+        <a href="#about" class="btn btn-outline-custom mt-4">About Me</a>
       </div>
     </section>
 
+    <!-- About -->
     <section id="about" class="section-padding">
       <div class="container text-center">
         <h2 class="section-title">Tentang Saya</h2>
         <div class="row justify-content-center">
           <div class="col-lg-8">
-            <p class="lead mt-4" style="color: var(--text-light)">
-              [Tulis tentang diri Anda di sini. Contoh: Saya seorang pengembang
-              web yang bersemangat menciptakan solusi digital inovatif. Saya
-              memiliki pengalaman dalam HTML, CSS, JavaScript, dan sedang
-              mempelajari teknologi baru seperti React.]
+            <p class="lead mt-4">
+              Halo! Nama saya Rucirasatti Nariswana, mahasiswi semester 6 program studi D4 Teknologi Rekayasa Komputer dari Politeknik Negeri Semarang (IPK 3,88/4,00) dengan keahlian dalam pemrograman web, pengolahan data, dan machine learning.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section-padding">
+    <!-- Projects -->
+   
+    <!-- Footer -->
+    <footer id="contact">
       <div class="container">
-        <h2 class="section-title text-center">Proyek Unggulan</h2>
-        <div id="projectCarousel" class="carousel slide">
-          <div class="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#projectCarousel"
-              data-bs-slide-to="0"
-              class="active"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#projectCarousel"
-              data-bs-slide-to="1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#projectCarousel"
-              data-bs-slide-to="2"
-            ></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="row justify-content-center">
-                <div class="col-lg-8">
-                  <div class="card card-project">
-                    <img
-                      src="Img/project1.jpg"
-                      class="card-img-top"
-                      alt="Proyek 1"
-                    />
-                    <div class="card-body d-flex flex-column">
-                      <h5 class="card-title fw-bold">[Nama Proyek 1]</h5>
-                      <p class="card-text text-white-50">
-                        [Deskripsi singkat proyek Anda]
-                      </p>
-                      <a
-                        href="[https://github.com/username/proyek1]"
-                        target="_blank"
-                        class="btn btn-custom mt-auto align-self-start"
-                        ><i class="bi bi-github"></i> Lihat di GitHub</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="row justify-content-center">
-                <div class="col-lg-8">
-                  <div class="card card-project">
-                    <img
-                      src="Img/project2.jpg"
-                      class="card-img-top"
-                      alt="Proyek 2"
-                    />
-                    <div class="card-body d-flex flex-column">
-                      <h5 class="card-title fw-bold">[Nama Proyek 2]</h5>
-                      <p class="card-text text-white-50">
-                        [Deskripsi singkat proyek Anda]
-                      </p>
-                      <a
-                        href="[https://github.com/username/proyek2]"
-                        target="_blank"
-                        class="btn btn-custom mt-auto align-self-start"
-                        ><i class="bi bi-github"></i> Lihat di GitHub</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="row justify-content-center">
-                <div class="col-lg-8">
-                  <div class="card card-project">
-                    <img
-                      src="Img/project3.jpg"
-                      class="card-img-top"
-                      alt="Proyek 3"
-                    />
-                    <div class="card-body d-flex flex-column">
-                      <h5 class="card-title fw-bold">[Nama Proyek 3]</h5>
-                      <p class="card-text text-white-50">
-                        [Deskripsi singkat proyek Anda]
-                      </p>
-                      <a
-                        href="[https://github.com/username/proyek3]"
-                        target="_blank"
-                        class="btn btn-custom mt-auto align-self-start"
-                        ><i class="bi bi-github"></i> Lihat di GitHub</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#projectCarousel"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon"></span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#projectCarousel"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon"></span>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <footer id="contact" class="footer">
-      <div class="container text-center">
         <h2 class="section-title">Hubungi Saya</h2>
-        <p class="lead text-white-50">
-          Tertarik untuk berkolaborasi atau sekadar menyapa? <br />Jangan ragu
-          untuk menghubungi saya.
-        </p>
-        <div class="social-icons mt-5">
-          <a href="mailto:[emailanda@example.com]" title="Email"
-            ><i class="bi bi-envelope-fill"></i
-          ></a>
-          <a href="[https://github.com/username]" title="GitHub"
-            ><i class="bi bi-github"></i
-          ></a>
-          <a
-            href="[https://linkedin.com/in/username]"
-            target="_blank"
-            title="LinkedIn"
-            ><i class="bi bi-linkedin"></i
-          ></a>
-          <a
-            href="[https://wa.me/6281234567890]"
-            target="_blank"
-            title="WhatsApp"
-            ><i class="bi bi-whatsapp"></i
-          ></a>
+        <p class="lead">Punya ide atau sekadar ingin berbincang?<br />Let's Connect!</p>
+        <div class="social-icons mt-4">
+          <a href="mailto:rcirasatti@gmail.com"><i class="bi bi-envelope-fill"></i></a>
+          <a href="https://github.com/rcirasatti" target="_blank"><i class="bi bi-github"></i></a>
+          <a href="https://www.linkedin.com/in/rucirasatti/" target="_blank"><i class="bi bi-linkedin"></i></a>
         </div>
-        <div class="copyright">
-          <p>© 2025 [Nama Anda]</p>
+        <div class="copyright mt-4">
+          <p>&copy; 2025 Rucirasatti Nariswana</p>
         </div>
       </div>
     </footer>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      const navbar = document.getElementById("navbar");
-      window.onscroll = function () {
-        if (window.scrollY > 50) {
-          navbar.classList.add("navbar-scrolled");
-        } else {
-          navbar.classList.remove("navbar-scrolled");
-        }
-      };
-    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
