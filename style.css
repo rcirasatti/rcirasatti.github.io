@@ -16,6 +16,10 @@ body {
   scroll-behavior: smooth;
 }
 
+html {
+  scroll-padding-top: 35px; /* Sesuaikan dengan tinggi navbar + margin */
+}
+
 /* Hero Section Enhancement */
 .hero {
   background: linear-gradient(120deg, #e0ecff 60%, #f9f9fb 100%);
@@ -158,21 +162,24 @@ h2.section-title::after {
 .timeline-icon {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 18px;
   background: white;
   border: 2px solid var(--primary-color);
   color: var(--primary-color);
   border-radius: 50%;
   padding: 10px;
-  font-size: 16px;
+  font-size: 18px;
   box-shadow: 0 2px 8px rgba(13,110,253,0.08);
+  z-index: 1;
 }
 .timeline-content {
-  padding-left: 50px;
-  background: #f8f9fa;
-  border-radius: 12px;
+  padding-left: 60px;
+  position: relative;
+  z-index: 2;
   padding: 20px 30px;
   margin-bottom: 10px;
+  background: #f8f9fa;
+  border-radius: 12px;
   box-shadow: 0 2px 10px rgba(13,110,253,0.05);
 }
 
@@ -211,19 +218,70 @@ h2.section-title::after {
 
 /* Section spacing: beri jarak antar section */
 section.section-padding {
-  margin: 30px;
-  padding: 2rem;
+  margin-bottom: 60px;
+  padding: 2rem 0;
 }
 
 @media (max-width: 768px) {
   section.section-padding {
     margin-bottom: 40px;
+    padding: 1.5rem 0;
   }
 }
 
-/* Responsive Section Padding */
-@media (max-width: 768px) {
-  .section-padding { padding: 60px 0; }
-  .hero { padding-top: 60px; }
-  .card-img-top { height: 150px; }
+/* Perbaiki tombol carousel agar selalu tampil dan tidak keluar area */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 48px;
+  height: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 1;
+  z-index: 2;
+  background: rgba(255,255,255,0.85);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(13,110,253,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-control-prev {
+  left: -60px !important;
+}
+.carousel-control-next {
+  right: -60px !important;
+}
+
+@media (max-width: 992px) {
+  .carousel-control-prev {
+    left: -20px !important;
+  }
+  .carousel-control-next {
+    right: -20px !important;
+  }
+}
+@media (max-width: 576px) {
+  .carousel-control-prev,
+  .carousel-control-next {
+    left: 0 !important;
+    right: 0 !important;
+  }
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  padding: 10px;
+  background-size: 60% 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: none;
+  /* Gunakan SVG custom agar icon panah tetap kontras */
+}
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
+}
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
 }
