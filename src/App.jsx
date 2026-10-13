@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import Batik from './Batik';
 import {
   profile,
+  photo,
+  batikMotifs,
+  batikSeed,
   facts,
   kinds,
   projects,
@@ -12,7 +16,7 @@ import {
 } from './data/content';
 
 const NAV = [
-  { id: 'work', label: 'Work' },
+  { id: 'work', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
   { id: 'research', label: 'Research' },
   { id: 'skills', label: 'Skills' },
@@ -23,14 +27,31 @@ const FILTERS = [{ id: 'all', label: 'All' }].concat(
   Object.entries(kinds).map(([id, label]) => ({ id, label })),
 );
 
-function getInitialTheme() {
+function readStored(key) {
   try {
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light' || saved === 'dark') return saved;
+    return localStorage.getItem(key);
   } catch {
-    // storage unavailable: fall through to the system preference
+    return null;
   }
+}
+
+function store(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // storage unavailable: the choice lasts for this visit only
+  }
+}
+
+function getInitialTheme() {
+  const saved = readStored('theme');
+  if (saved === 'light' || saved === 'dark') return saved;
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function getInitialMotif() {
+  const saved = readStored('motif');
+  return batikMotifs.includes(saved) ? saved : batikMotifs[0];
 }
 
 function ExternalLink({ href, children, className }) {
@@ -42,9 +63,10 @@ function ExternalLink({ href, children, className }) {
   );
 }
 
-function SectionHead({ index, title, children }) {
+function SectionHead({ index, title, motif, children }) {
   return (
     <header className="section-head">
+      <Batik motif={motif} className="section-strip" />
       <p className="eyebrow">{index}</p>
       <h2>{title}</h2>
       {children}
@@ -52,35 +74,50 @@ function SectionHead({ index, title, children }) {
   );
 }
 
-function ProjectCard({ project, onOpen }) {
+function Portrait({ motif }) {
+  const initials = profile.name
+    .split(' ')
+    .map((word) => word[0])
+    .join('');
+
   return (
-    <article className="project">
-      <div className="project-meta">
-        <span>{project.year}</span>
-        <span>{kinds[project.kind]}</span>
+    <div className="portrait">
+      <Batik motif={motif} className="portrait-cloth" />
+      <div className="portrait-frame">
+        {photo ? (
+          <img src={photo} alt={`Portrait of ${profile.name}`} />
+        ) : (
+          <span className="portrait-initials" aria-hidden="true">
+            {initials}
+          </span>
+        )}
       </div>
-      <h3>
-        <button type="button" className="project-open" onClick={() => onOpen(project)}>
-          {project.title}
-        </button>
-      </h3>
-      <p className="project-role">
-        {project.role} · {project.context}
-      </p>
-      <p className="project-summary">{project.summary}</p>
-      <p className="project-foot">
-        <span className="status" data-status={project.status}>
-          {project.status}
-        </span>
-        <span className="project-more" aria-hidden="true">
-          {project.image ? 'View details and screenshot' : 'View details'} →
-        </span>
-      </p>
-    </article>
+    </div>
   );
 }
 
-function ProjectDialog({ project, onClose }) {
+function ProjectRow({ project, number, onOpen }) {
+  return (
+    <li>
+      <button type="button" className="work" onClick={() => onOpen(project)}>
+        <span className="work-number">{String(number).padStart(2, '0')}</span>
+        <span className="work-main">
+          <span className="work-title">{project.title}</span>
+          <span className="work-role">
+            {project.role} · {project.context}
+          </span>
+        </span>
+        <span className="work-kind">{kinds[project.kind]}</span>
+        <span className="work-year">{project.year}</span>
+        <span className="status" data-status={project.status}>
+          {project.status}
+        </span>
+      </button>
+    </li>
+  );
+}
+
+function ProjectDialog({ project, motif, onClose }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -101,54 +138,57 @@ function ProjectDialog({ project, onClose }) {
       }}
     >
       {project && (
-        <div className="dialog-body">
-          <button type="button" className="dialog-close" onClick={onClose}>
-            Close
-          </button>
-          {project.image && (
-            <img
-              className="dialog-image"
-              src={project.image.src}
-              alt={project.image.alt}
-              width="1100"
-              height="603"
-            />
-          )}
-          <div className="project-meta">
-            <span>
-              {project.year} · {kinds[project.kind]}
-            </span>
-            <span className="status" data-status={project.status}>
-              {project.status}
-            </span>
-          </div>
-          <h3 id="dialog-title">{project.title}</h3>
-          <p className="project-role">
-            {project.role} · {project.context}
-          </p>
-          <p>{project.summary}</p>
-          {project.points.length > 0 && (
-            <ul className="points">
-              {project.points.map((point) => (
-                <li key={point}>{point}</li>
+        <>
+          <Batik motif={motif} className="dialog-strip" />
+          <div className="dialog-body">
+            <button type="button" className="chip dialog-close" onClick={onClose}>
+              Close
+            </button>
+            {project.image && (
+              <img
+                className="dialog-image"
+                src={project.image.src}
+                alt={project.image.alt}
+                width="1100"
+                height="603"
+              />
+            )}
+            <div className="dialog-meta">
+              <span>
+                {project.year} · {kinds[project.kind]}
+              </span>
+              <span className="status" data-status={project.status}>
+                {project.status}
+              </span>
+            </div>
+            <h3 id="dialog-title">{project.title}</h3>
+            <p className="work-role">
+              {project.role} · {project.context}
+            </p>
+            <p>{project.summary}</p>
+            {project.points.length > 0 && (
+              <ul className="points">
+                {project.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            )}
+            <ul className="tags" aria-label="Technology">
+              {project.stack.map((tech) => (
+                <li key={tech}>{tech}</li>
               ))}
             </ul>
-          )}
-          <ul className="tags" aria-label="Technology">
-            {project.stack.map((tech) => (
-              <li key={tech}>{tech}</li>
-            ))}
-          </ul>
-          {project.links.length > 0 && (
-            <p className="project-links">
-              {project.links.map((link) => (
-                <ExternalLink key={link.href} href={link.href}>
-                  {link.label}
-                </ExternalLink>
-              ))}
-            </p>
-          )}
-        </div>
+            {project.links.length > 0 && (
+              <p className="link-row">
+                {project.links.map((link) => (
+                  <ExternalLink key={link.href} href={link.href}>
+                    {link.label}
+                  </ExternalLink>
+                ))}
+              </p>
+            )}
+          </div>
+        </>
       )}
     </dialog>
   );
@@ -156,18 +196,22 @@ function ProjectDialog({ project, onClose }) {
 
 export default function App() {
   const [theme, setTheme] = useState(getInitialTheme);
+  const [motif, setMotif] = useState(getInitialMotif);
   const [filter, setFilter] = useState('all');
   const [showAll, setShowAll] = useState(false);
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    try {
-      localStorage.setItem('theme', theme);
-    } catch {
-      // storage unavailable: the choice lasts for this visit only
-    }
+    store('theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    store('motif', motif);
+  }, [motif]);
+
+  const nextMotif = () =>
+    setMotif(batikMotifs[(batikMotifs.indexOf(motif) + 1) % batikMotifs.length]);
 
   const matching = filter === 'all' ? projects : projects.filter((p) => p.kind === filter);
   // the featured cut only applies to the unfiltered view
@@ -183,7 +227,7 @@ export default function App() {
 
       <header className="topbar">
         <a className="brand" href="#top">
-          Rucirasatti N.
+          Rucirasatti<span>.</span>
         </a>
         <nav aria-label="Sections">
           {NAV.map((item) => (
@@ -194,7 +238,7 @@ export default function App() {
         </nav>
         <button
           type="button"
-          className="theme-toggle"
+          className="chip"
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         >
           {theme === 'dark' ? 'Light' : 'Dark'}
@@ -203,42 +247,63 @@ export default function App() {
 
       <main id="main">
         <section className="hero" id="top">
-          <p className="eyebrow">
-            {profile.role} · {profile.location}
-          </p>
-          <h1>{profile.name}</h1>
-          <p className="lede">{profile.intro}</p>
-          <p className="hero-actions">
-            <a className="button" href={profile.cv} download>
-              Download CV
-            </a>
-            <a className="button ghost" href={`mailto:${profile.email}`}>
-              {profile.email}
-            </a>
-            <ExternalLink className="text-link" href={profile.github}>
-              GitHub
-            </ExternalLink>
-            <ExternalLink className="text-link" href={profile.linkedin}>
-              LinkedIn
-            </ExternalLink>
-          </p>
-          <dl className="facts">
-            {facts.map((fact) => (
-              <div key={fact.label}>
-                <dt>{fact.value}</dt>
-                <dd>{fact.label}</dd>
-              </div>
-            ))}
-          </dl>
+          <div className="hero-text">
+            <p className="eyebrow">Sugeng rawuh · Welcome</p>
+            <h1>
+              Rucirasatti
+              <br />
+              <em>Nariswana</em>
+            </h1>
+            <p className="hero-role">
+              {profile.role} · {profile.location}
+            </p>
+            <p className="lede">{profile.intro}</p>
+            <p className="actions">
+              <a className="button" href={profile.cv} download>
+                Download CV
+              </a>
+              <a className="button ghost" href={`mailto:${profile.email}`}>
+                {profile.email}
+              </a>
+            </p>
+            <p className="link-row">
+              <ExternalLink href={profile.github}>GitHub</ExternalLink>
+              <ExternalLink href={profile.linkedin}>LinkedIn</ExternalLink>
+            </p>
+          </div>
+          <Portrait motif={motif} />
         </section>
 
+        <div className="cloth">
+          <Batik motif={motif} className="cloth-pattern" />
+          <p className="cloth-caption">
+            <code>
+              batik.{motif}({'{'} seed: &quot;{batikSeed}&quot; {'}'})
+            </code>
+            <span>This batik is drawn by code, not an image.</span>
+            <button type="button" className="chip" onClick={nextMotif}>
+              Change motif
+            </button>
+          </p>
+        </div>
+
+        <dl className="facts">
+          {facts.map((fact) => (
+            <div key={fact.label}>
+              <dt>{fact.value}</dt>
+              <dd>{fact.label}</dd>
+            </div>
+          ))}
+        </dl>
+
         <section id="work">
-          <SectionHead index="01" title="Projects">
+          <SectionHead index="01" title="Projects" motif={motif}>
             <div className="filters" role="group" aria-label="Filter projects">
               {FILTERS.map((item) => (
                 <button
                   key={item.id}
                   type="button"
+                  className="chip"
                   aria-pressed={filter === item.id}
                   onClick={() => setFilter(item.id)}
                 >
@@ -247,13 +312,18 @@ export default function App() {
               ))}
             </div>
           </SectionHead>
-          <div className="projects">
-            {shown.map((project) => (
-              <ProjectCard key={project.title} project={project} onOpen={setSelected} />
+          <ol className="works">
+            {shown.map((project, index) => (
+              <ProjectRow
+                key={project.title}
+                project={project}
+                number={index + 1}
+                onOpen={setSelected}
+              />
             ))}
-          </div>
+          </ol>
           {filter === 'all' && (
-            <p className="projects-more">
+            <p className="works-more">
               <button type="button" className="button ghost" onClick={() => setShowAll(!showAll)}>
                 {showAll ? 'Show selected projects only' : `Show ${hidden} more projects`}
               </button>
@@ -262,7 +332,7 @@ export default function App() {
         </section>
 
         <section id="experience">
-          <SectionHead index="02" title="Experience" />
+          <SectionHead index="02" title="Experience" motif={motif} />
           <ol className="timeline">
             {experience.map((job) => (
               <li key={job.title + job.dates}>
@@ -282,7 +352,7 @@ export default function App() {
         </section>
 
         <section id="research">
-          <SectionHead index="03" title="Research and publications" />
+          <SectionHead index="03" title="Research and publications" motif={motif} />
           <ul className="research">
             {research.map((item) => (
               <li key={item.title}>
@@ -305,7 +375,7 @@ export default function App() {
         </section>
 
         <section id="skills">
-          <SectionHead index="04" title="Skills and education" />
+          <SectionHead index="04" title="Skills and education" motif={motif} />
           <div className="columns">
             <div>
               {skills.map((group) => (
@@ -342,32 +412,33 @@ export default function App() {
         </section>
 
         <section id="contact" className="contact">
-          <SectionHead index="05" title="Contact" />
+          <SectionHead index="05" title="Matur nuwun. Let's talk." motif={motif} />
           <p className="lede">
             I am open to web development and data roles. Email is the fastest way to reach me.
           </p>
-          <p className="hero-actions">
+          <p className="actions">
             <a className="button" href={`mailto:${profile.email}`}>
               {profile.email}
             </a>
-            <ExternalLink className="text-link" href={profile.linkedin}>
-              LinkedIn
-            </ExternalLink>
-            <ExternalLink className="text-link" href={profile.github}>
-              GitHub
-            </ExternalLink>
+          </p>
+          <p className="link-row">
+            <ExternalLink href={profile.linkedin}>LinkedIn</ExternalLink>
+            <ExternalLink href={profile.github}>GitHub</ExternalLink>
           </p>
         </section>
       </main>
 
       <footer className="footer">
-        <p>
-          © {new Date().getFullYear()} {profile.name}
-        </p>
-        <a href="#top">Back to top</a>
+        <Batik motif={motif} className="footer-cloth" />
+        <div className="footer-row">
+          <p>
+            © {new Date().getFullYear()} {profile.name}
+          </p>
+          <a href="#top">Back to top</a>
+        </div>
       </footer>
 
-      <ProjectDialog project={selected} onClose={() => setSelected(null)} />
+      <ProjectDialog project={selected} motif={motif} onClose={() => setSelected(null)} />
     </>
   );
 }

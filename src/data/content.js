@@ -10,6 +10,12 @@ export const profile = {
     'I build Laravel and React web systems that are in daily use, and I work with data in Python: cleaning it, modelling it, and putting the result into a product.',
 };
 
+// Set `photo` to a file in public/img (for example '/img/profile.jpg') to show a portrait.
+export const photo = null;
+
+export const batikMotifs = ['kawung', 'parang', 'truntum'];
+export const batikSeed = 'rucirasatti';
+
 export const facts = [
   { value: '1+', label: 'year of professional experience in web development and data' },
   { value: '3.91', label: 'GPA out of 4.00, Politeknik Negeri Semarang' },
