@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import Batik from './Batik';
+import Medallion from './Medallion';
 import {
   profile,
   photo,
+  about,
   batikMotifs,
   batikSeed,
   facts,
@@ -16,6 +18,7 @@ import {
 } from './data/content';
 
 const NAV = [
+  { id: 'about', label: 'About' },
   { id: 'work', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
   { id: 'research', label: 'Research' },
@@ -54,6 +57,31 @@ function getInitialMotif() {
   return batikMotifs.includes(saved) ? saved : batikMotifs[0];
 }
 
+// Tracks which section sits in the reading band of the viewport.
+function useActiveSection(ids) {
+  const [active, setActive] = useState(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: '-35% 0px -60% 0px' },
+    );
+    ids.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+    return () => observer.disconnect();
+  }, [ids]);
+
+  return active;
+}
+
+const NAV_IDS = NAV.map((item) => item.id);
+
 function ExternalLink({ href, children, className }) {
   return (
     <a className={className} href={href} target="_blank" rel="noreferrer">
@@ -75,11 +103,6 @@ function SectionHead({ index, title, motif, children }) {
 }
 
 function Portrait({ motif }) {
-  const initials = profile.name
-    .split(' ')
-    .map((word) => word[0])
-    .join('');
-
   return (
     <div className="portrait">
       <Batik motif={motif} className="portrait-cloth" />
@@ -87,9 +110,7 @@ function Portrait({ motif }) {
         {photo ? (
           <img src={photo} alt={`Portrait of ${profile.name}`} />
         ) : (
-          <span className="portrait-initials" aria-hidden="true">
-            {initials}
-          </span>
+          <Medallion className="portrait-medallion" />
         )}
       </div>
     </div>
@@ -120,13 +141,18 @@ function ProjectRow({ project, number, onOpen }) {
   );
 }
 
-function ProjectDialog({ project, motif, onClose }) {
+function ProjectDialog({ project, position, total, motif, onClose, onStep }) {
   const ref = useRef(null);
 
   useEffect(() => {
     const dialog = ref.current;
     if (project && !dialog.open) dialog.showModal();
     if (!project && dialog.open) dialog.close();
+  }, [project]);
+
+  // a new project starts at the top of the dialog
+  useEffect(() => {
+    if (project) ref.current.scrollTop = 0;
   }, [project]);
 
   return (
@@ -139,23 +165,29 @@ function ProjectDialog({ project, motif, onClose }) {
         // a click on the backdrop lands on the dialog element itself
         if (event.target === ref.current) onClose();
       }}
+      onKeyDown={(event) => {
+        if (event.key === 'ArrowRight') onStep(1);
+        if (event.key === 'ArrowLeft') onStep(-1);
+      }}
     >
       {project && (
         <>
           <Batik motif={motif} className="dialog-strip" rowHeight={24} />
           <div className="dialog-body">
-            <button type="button" className="chip dialog-close" onClick={onClose}>
-              Close
-            </button>
-            {project.image && (
-              <img
-                className="dialog-image"
-                src={project.image.src}
-                alt={project.image.alt}
-                width="1100"
-                height="603"
-              />
-            )}
+            <div className="dialog-bar">
+              <span className="dialog-count">
+                {String(position).padStart(2, '0')} / {String(total).padStart(2, '0')}
+              </span>
+              <button type="button" className="chip" onClick={() => onStep(-1)}>
+                ← Previous
+              </button>
+              <button type="button" className="chip" onClick={() => onStep(1)}>
+                Next →
+              </button>
+              <button type="button" className="chip dialog-close" onClick={onClose}>
+                Close
+              </button>
+            </div>
             <div className="dialog-meta">
               <span>
                 {project.year} · {kinds[project.kind]}
@@ -190,6 +222,12 @@ function ProjectDialog({ project, motif, onClose }) {
                 ))}
               </p>
             )}
+            {(project.images || []).map((image) => (
+              <figure className="dialog-figure" key={image.src}>
+                <img src={image.src} alt={image.alt} loading="lazy" />
+                {image.caption && <figcaption>{image.caption}</figcaption>}
+              </figure>
+            ))}
           </div>
         </>
       )}
@@ -203,6 +241,7 @@ export default function App() {
   const [filter, setFilter] = useState('all');
   const [showAll, setShowAll] = useState(false);
   const [selected, setSelected] = useState(null);
+  const active = useActiveSection(NAV_IDS);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -213,14 +252,17 @@ export default function App() {
     store('motif', motif);
   }, [motif]);
 
-  const nextMotif = () =>
-    setMotif(batikMotifs[(batikMotifs.indexOf(motif) + 1) % batikMotifs.length]);
-
   const matching = filter === 'all' ? projects : projects.filter((p) => p.kind === filter);
   // the featured cut only applies to the unfiltered view
   const expanded = showAll || filter !== 'all';
   const shown = expanded ? matching : matching.filter((p) => p.featured);
   const hidden = matching.length - shown.length;
+
+  const selectedIndex = shown.indexOf(selected);
+  const step = (offset) => {
+    if (selectedIndex < 0) return;
+    setSelected(shown[(selectedIndex + offset + shown.length) % shown.length]);
+  };
 
   return (
     <>
@@ -234,7 +276,11 @@ export default function App() {
         </a>
         <nav aria-label="Sections">
           {NAV.map((item) => (
-            <a key={item.id} href={`#${item.id}`}>
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              aria-current={active === item.id ? 'true' : undefined}
+            >
               {item.label}
             </a>
           ))}
@@ -278,15 +324,27 @@ export default function App() {
 
         <div className="cloth">
           <Batik motif={motif} className="cloth-pattern" drift />
-          <p className="cloth-caption">
-            <code>
-              batik.{motif}({'{'} seed: &quot;{batikSeed}&quot; {'}'})
-            </code>
-            <span>This batik is drawn by code, not an image.</span>
-            <button type="button" className="chip" onClick={nextMotif}>
-              Change motif
-            </button>
-          </p>
+          <div className="cloth-caption">
+            <p>
+              <code>
+                batik.{motif}({'{'} seed: &quot;{batikSeed}&quot; {'}'})
+              </code>
+              <span>The batik on this page is drawn by code, not an image.</span>
+            </p>
+            <div className="motifs" role="group" aria-label="Batik motif">
+              {batikMotifs.map((name) => (
+                <button
+                  key={name}
+                  type="button"
+                  className="chip"
+                  aria-pressed={motif === name}
+                  onClick={() => setMotif(name)}
+                >
+                  {name}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         <dl className="facts">
@@ -298,8 +356,17 @@ export default function App() {
           ))}
         </dl>
 
+        <section id="about">
+          <SectionHead index="01" title="About" motif={motif} />
+          <div className="about">
+            {about.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </section>
+
         <section id="work">
-          <SectionHead index="01" title="Projects" motif={motif}>
+          <SectionHead index="02" title="Projects" motif={motif}>
             <div className="filters" role="group" aria-label="Filter projects">
               {FILTERS.map((item) => (
                 <button
@@ -334,7 +401,7 @@ export default function App() {
         </section>
 
         <section id="experience">
-          <SectionHead index="02" title="Experience" motif={motif} />
+          <SectionHead index="03" title="Experience" motif={motif} />
           <ol className="timeline">
             {experience.map((job) => (
               <li key={job.title + job.dates}>
@@ -354,7 +421,7 @@ export default function App() {
         </section>
 
         <section id="research">
-          <SectionHead index="03" title="Research and publications" motif={motif} />
+          <SectionHead index="04" title="Research and publications" motif={motif} />
           <ul className="research">
             {research.map((item) => (
               <li key={item.title}>
@@ -377,7 +444,7 @@ export default function App() {
         </section>
 
         <section id="skills">
-          <SectionHead index="04" title="Skills and education" motif={motif} />
+          <SectionHead index="05" title="Skills and education" motif={motif} />
           <div className="columns">
             <div>
               {skills.map((group) => (
@@ -414,13 +481,16 @@ export default function App() {
         </section>
 
         <section id="contact" className="contact">
-          <SectionHead index="05" title="Let's talk" motif={motif} />
+          <SectionHead index="06" title="Let's talk" motif={motif} />
           <p className="lede">
             I am open to web development and data roles. Email is the fastest way to reach me.
           </p>
           <p className="actions">
             <a className="button" href={`mailto:${profile.email}`}>
               {profile.email}
+            </a>
+            <a className="button ghost" href={profile.cv} download>
+              Download CV
             </a>
           </p>
           <p className="link-row">
@@ -440,7 +510,14 @@ export default function App() {
         </div>
       </footer>
 
-      <ProjectDialog project={selected} motif={motif} onClose={() => setSelected(null)} />
+      <ProjectDialog
+        project={selected}
+        position={selectedIndex + 1}
+        total={shown.length}
+        motif={motif}
+        onClose={() => setSelected(null)}
+        onStep={step}
+      />
     </>
   );
 }

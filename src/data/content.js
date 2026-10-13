@@ -23,6 +23,12 @@ export const facts = [
   { value: '1', label: 'registered software copyright' },
 ];
 
+export const about = [
+  'I am a Computer Engineering Technology graduate from Politeknik Negeri Semarang, now working at CV. OmahIoT. Most of my work is Laravel systems for institutions: portals, content management, an ERP, and the APIs that connect them.',
+  'Alongside that I work with data in Python. My thesis compared seven algorithms to estimate project costs inside an ERP, and I taught data science to a class of about 20 learners at Coding Camp.',
+  'Outside of code, I served as Deputy of Interests and Talents on the student executive board and chaired the RuPaWan painting exhibition.',
+];
+
 export const kinds = {
   web: 'Web & apps',
   data: 'Data & ML',
@@ -41,10 +47,10 @@ export const projects = [
     role: 'Main contributor',
     status: 'Live',
     featured: true,
-    image: {
+    images: [{
       src: '/img/polines.jpg',
       alt: 'Home page of the Politeknik Negeri Semarang central portal',
-    },
+    }],
     summary:
       'The main Politeknik Negeri Semarang website, live at polines.ac.id, built on Laravel 11 with a content management system.',
     points: [
@@ -63,6 +69,13 @@ export const projects = [
     role: 'Author',
     status: 'Completed',
     featured: true,
+    images: [
+      {
+        src: '/img/thesis-architecture.jpg',
+        alt: 'Architecture diagram: model development pipeline, integration layer, and the ERP web application flow',
+        caption: 'System architecture from the thesis.',
+      },
+    ],
     summary:
       'An Owner Estimate Cost (OEC) estimation feature for a project-management ERP, built by comparing seven algorithms on 110 real transactions.',
     points: [
@@ -100,13 +113,28 @@ export const projects = [
     role: 'Developer and designer',
     status: 'Live',
     featured: true,
-    image: { src: '/img/omahiot.jpg', alt: 'Home page of the OmahIoT company website' },
+    images: [
+      {
+        src: '/img/omahiot.jpg',
+        alt: 'Home page of the current OmahIoT company website',
+        caption: 'Current site at omahiot.com, which I designed.',
+      },
+      {
+        src: '/img/omahiot-v1.jpg',
+        alt: 'Home page of the first OmahIoT company website',
+        caption: 'First version, which I built in React and Vite.',
+      },
+    ],
     summary:
       'The OmahIoT company website. I built the first version in React and Vite with a Laravel CMS, then designed the current site at omahiot.com.',
     points: [],
     stack: ['React', 'TypeScript', 'Vite', 'Laravel'],
     links: [
       { label: 'omahiot.com', href: 'https://omahiot.com' },
+      {
+        label: 'First version demo',
+        href: 'https://rcirasatti.github.io/LandingPage-OmahIot/',
+      },
       {
         label: 'First version source',
         href: 'https://github.com/rcirasatti/LandingPage-OmahIot',
@@ -150,10 +178,10 @@ export const projects = [
     role: 'Co-developer, team of two',
     status: 'Live',
     featured: true,
-    image: {
+    images: [{
       src: '/img/karang-taruna.jpg',
       alt: 'Home page of the Karang Taruna Tlogo Batursari website',
-    },
+    }],
     summary:
       'Public website and content management system for a youth organisation, built by a team of two.',
     points: [],
@@ -224,11 +252,21 @@ export const projects = [
     context: 'CV. OmahIoT',
     role: 'Interface design and initial prototype',
     status: 'In development',
+    images: [
+      {
+        src: '/img/orari.jpg',
+        alt: 'Landing page of the ORARI submission system prototype',
+        caption: 'Interface prototype.',
+      },
+    ],
     summary:
       'A role-based system for submitting and verifying amateur radio (ORARI) applications. I designed the interface and built the initial Laravel prototype; a team continued development.',
     points: [],
     stack: ['Laravel', 'React', 'TypeScript'],
-    links: [gh('orari')],
+    links: [
+      { label: 'Prototype demo', href: 'https://rcirasatti.github.io/orari-ascend/' },
+      gh('orari'),
+    ],
   },
   {
     title: 'FTTH route data preparation',
@@ -276,11 +314,18 @@ export const projects = [
     context: 'CV. OmahIoT',
     role: 'Interface prototype',
     status: 'Prototype',
+    images: [
+      {
+        src: '/img/yayasan.jpg',
+        alt: 'Dashboard overview with balance cards, a cash flow chart, and an asset condition chart',
+        caption: 'Overview page, running on sample data.',
+      },
+    ],
     summary:
       'A React and TypeScript interface prototype for a school foundation, with overview, financial management, and inventory pages running on sample data.',
     points: [],
     stack: ['React', 'TypeScript', 'Tailwind CSS'],
-    links: [],
+    links: [{ label: 'Prototype demo', href: 'https://rcirasatti.github.io/yayasan/' }],
   },
   {
     title: 'Polines website redesign concept',
@@ -289,11 +334,21 @@ export const projects = [
     context: 'CV. OmahIoT internship',
     role: 'Design prototype',
     status: 'Prototype',
+    images: [
+      {
+        src: '/img/polines-redesign.jpg',
+        alt: 'Home page of the Polines website redesign concept',
+        caption: 'Redesign concept home page.',
+      },
+    ],
     summary:
       'A redesign concept for polines.ac.id in React and TypeScript, with a sitemap and a style guide.',
     points: [],
     stack: ['React', 'TypeScript', 'Tailwind CSS'],
-    links: [gh('polines-elevate')],
+    links: [
+      { label: 'Concept demo', href: 'https://rcirasatti.github.io/polines-elevate/' },
+      gh('polines-elevate'),
+    ],
   },
   {
     title: 'Rainfall and flood sensor analysis',
@@ -467,10 +522,10 @@ export const projects = [
     context: 'Kazuya Media Indonesia internship',
     role: 'Developer',
     status: 'Completed',
-    image: {
+    images: [{
       src: '/img/kazuya-landing.jpg',
       alt: 'Company landing page template built during the Kazuya Media internship',
-    },
+    }],
     summary:
       'My internship project: a responsive company landing page template in HTML and Bootstrap, converted from a design.',
     points: [],
