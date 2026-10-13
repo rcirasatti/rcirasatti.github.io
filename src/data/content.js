@@ -29,6 +29,10 @@ export const about = [
   'Outside of code, I served as Deputy of Interests and Talents on the student executive board and chaired the RuPaWan painting exhibition.',
 ];
 
+export const availability = 'Open to web development and data roles';
+
+export const coreStack = ['Laravel', 'PHP', 'React', 'MySQL', 'Python', 'Scikit-learn', 'TensorFlow/Keras'];
+
 export const kinds = {
   web: 'Web & apps',
   data: 'Data & ML',

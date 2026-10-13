@@ -38,7 +38,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 84px;
+  scroll-padding-top: 72px;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -328,7 +328,7 @@ h1 em {
 }
 
 .cloth-pattern {
-  height: clamp(96px, 16vw, 168px);
+  height: clamp(60px, 9vw, 104px);
 }
 
 .cloth-caption {
@@ -365,32 +365,68 @@ h1 em {
 
 .about {
   display: grid;
-  gap: 16px;
-  max-width: 46rem;
-  font-size: 1.08rem;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(28px, 6vw, 72px);
+  align-items: start;
 }
 
-.about p:first-child {
+.about-text {
+  display: grid;
+  gap: 14px;
+}
+
+.about-text p:first-child {
   font-family: var(--serif);
-  font-size: clamp(1.25rem, 2.6vw, 1.6rem);
-  line-height: 1.4;
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  line-height: 1.45;
 }
 
-.about p + p {
+.about-text p + p {
   color: var(--muted);
+}
+
+.about-side {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.about-side h3 {
+  margin: 24px 0 10px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 0.95rem;
+}
+
+.availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+/* a small diamond, as in the cloth */
+.availability::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--sogan);
+  transform: rotate(45deg);
 }
 
 .facts {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  padding: clamp(32px, 5vw, 56px) 0 0;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px 24px;
 }
 
 .facts dt {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-size: clamp(2rem, 4vw, 2.6rem);
   line-height: 1;
   color: var(--accent);
 }
@@ -829,10 +865,7 @@ h3 {
     order: -1;
   }
 
-  .facts {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
+  .about,
   .columns {
     grid-template-columns: 1fr;
   }
@@ -914,4 +947,10 @@ h3 {
     opacity: 0;
     transform: translateY(14px);
   }
+}
+
+/* the hero cloth already sits right above About, so its own strip would double up */
+
+#about .section-strip {
+  display: none;
 }

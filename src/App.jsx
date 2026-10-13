@@ -5,6 +5,8 @@ import {
   profile,
   photo,
   about,
+  availability,
+  coreStack,
   batikMotifs,
   batikSeed,
   facts,
@@ -321,6 +323,7 @@ export default function App() {
               <em>Nariswana</em>
             </h1>
             <p className="lede">{profile.intro}</p>
+            <p className="availability">{availability}</p>
             <p className="actions">
               <a className="button" href={profile.cv} download>
                 Download CV
@@ -362,21 +365,30 @@ export default function App() {
           </div>
         </div>
 
-        <dl className="facts">
-          {facts.map((fact) => (
-            <div key={fact.label}>
-              <dt>{fact.value}</dt>
-              <dd>{fact.label}</dd>
-            </div>
-          ))}
-        </dl>
-
         <section id="about">
           <SectionHead index="01" title="About" motif={motif} />
           <div className="about">
-            {about.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
+            <div className="about-text">
+              {about.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <aside className="about-side">
+              <dl className="facts">
+                {facts.map((fact) => (
+                  <div key={fact.label}>
+                    <dt>{fact.value}</dt>
+                    <dd>{fact.label}</dd>
+                  </div>
+                ))}
+              </dl>
+              <h3>Core stack</h3>
+              <ul className="tags">
+                {coreStack.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </aside>
           </div>
         </section>
 
