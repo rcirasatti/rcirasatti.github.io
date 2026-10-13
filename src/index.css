@@ -300,30 +300,173 @@ h3 {
 
 .projects {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
 
 .project {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 26px;
+  padding: 22px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 14px;
+  transition:
+    border-color 0.15s,
+    transform 0.15s;
 }
 
-.project-image {
+.project:hover,
+.project:focus-within {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* the title button stretches over the whole card */
+.project-open {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.project-open::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+}
+
+.project-open:focus-visible {
+  outline: none;
+}
+
+.project-open:focus-visible::after {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.project-summary {
+  font-size: 0.95rem;
+  color: var(--muted);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.project-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+  font-size: 0.84rem;
+}
+
+.project-more {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.status {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.status[data-status='Live'],
+.status[data-status='Deployed'] {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.projects-more {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.projects-more .button {
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Project dialog */
+
+.dialog {
+  width: min(720px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: auto;
+}
+
+.dialog::backdrop {
+  background: rgb(10 14 20 / 0.62);
+  backdrop-filter: blur(3px);
+}
+
+.dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: clamp(20px, 4vw, 32px);
+}
+
+.dialog-close {
+  align-self: flex-end;
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+.dialog-close:hover {
+  border-color: var(--ink);
+}
+
+.dialog-image {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  object-position: top;
-  margin-bottom: 8px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 10px;
+}
+
+.dialog h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  line-height: 1.15;
+}
+
+.dialog .project-links {
+  margin-top: 4px;
 }
 
 .project-meta {
@@ -339,7 +482,7 @@ h3 {
 .project h3 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   line-height: 1.2;
 }
 
@@ -502,6 +645,12 @@ h3 {
 
 /* Small screens */
 
+@media (max-width: 1000px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 760px) {
   body {
     font-size: 16px;
@@ -542,5 +691,14 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .project {
+    transition: none;
+  }
+
+  .project:hover,
+  .project:focus-within {
+    transform: none;
   }
 }

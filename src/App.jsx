@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   profile,
   facts,
+  kinds,
   projects,
   experience,
   research,
@@ -18,11 +19,9 @@ const NAV = [
   { id: 'contact', label: 'Contact' },
 ];
 
-const FILTERS = [
-  { id: 'all', label: 'All' },
-  { id: 'web', label: 'Web' },
-  { id: 'data', label: 'Data & ML' },
-];
+const FILTERS = [{ id: 'all', label: 'All' }].concat(
+  Object.entries(kinds).map(([id, label]) => ({ id, label })),
+);
 
 function getInitialTheme() {
   try {
@@ -53,54 +52,113 @@ function SectionHead({ index, title, children }) {
   );
 }
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, onOpen }) {
   return (
     <article className="project">
-      {project.image && (
-        <img
-          className="project-image"
-          src={project.image.src}
-          alt={project.image.alt}
-          width="1100"
-          height="603"
-          loading="lazy"
-        />
-      )}
       <div className="project-meta">
         <span>{project.year}</span>
-        <span>{project.kind === 'web' ? 'Web' : 'Data & ML'}</span>
+        <span>{kinds[project.kind]}</span>
       </div>
-      <h3>{project.title}</h3>
-      <p className="project-role">{project.role}</p>
-      <p>{project.summary}</p>
-      {project.points.length > 0 && (
-        <ul className="points">
-          {project.points.map((point) => (
-            <li key={point}>{point}</li>
-          ))}
-        </ul>
-      )}
-      <ul className="tags" aria-label="Technology">
-        {project.stack.map((tech) => (
-          <li key={tech}>{tech}</li>
-        ))}
-      </ul>
-      {project.links.length > 0 && (
-        <p className="project-links">
-          {project.links.map((link) => (
-            <ExternalLink key={link.href} href={link.href}>
-              {link.label}
-            </ExternalLink>
-          ))}
-        </p>
-      )}
+      <h3>
+        <button type="button" className="project-open" onClick={() => onOpen(project)}>
+          {project.title}
+        </button>
+      </h3>
+      <p className="project-role">
+        {project.role} · {project.context}
+      </p>
+      <p className="project-summary">{project.summary}</p>
+      <p className="project-foot">
+        <span className="status" data-status={project.status}>
+          {project.status}
+        </span>
+        <span className="project-more" aria-hidden="true">
+          {project.image ? 'View details and screenshot' : 'View details'} →
+        </span>
+      </p>
     </article>
+  );
+}
+
+function ProjectDialog({ project, onClose }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const dialog = ref.current;
+    if (project && !dialog.open) dialog.showModal();
+    if (!project && dialog.open) dialog.close();
+  }, [project]);
+
+  return (
+    <dialog
+      ref={ref}
+      className="dialog"
+      aria-labelledby="dialog-title"
+      onClose={onClose}
+      onClick={(event) => {
+        // a click on the backdrop lands on the dialog element itself
+        if (event.target === ref.current) onClose();
+      }}
+    >
+      {project && (
+        <div className="dialog-body">
+          <button type="button" className="dialog-close" onClick={onClose}>
+            Close
+          </button>
+          {project.image && (
+            <img
+              className="dialog-image"
+              src={project.image.src}
+              alt={project.image.alt}
+              width="1100"
+              height="603"
+            />
+          )}
+          <div className="project-meta">
+            <span>
+              {project.year} · {kinds[project.kind]}
+            </span>
+            <span className="status" data-status={project.status}>
+              {project.status}
+            </span>
+          </div>
+          <h3 id="dialog-title">{project.title}</h3>
+          <p className="project-role">
+            {project.role} · {project.context}
+          </p>
+          <p>{project.summary}</p>
+          {project.points.length > 0 && (
+            <ul className="points">
+              {project.points.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+          )}
+          <ul className="tags" aria-label="Technology">
+            {project.stack.map((tech) => (
+              <li key={tech}>{tech}</li>
+            ))}
+          </ul>
+          {project.links.length > 0 && (
+            <p className="project-links">
+              {project.links.map((link) => (
+                <ExternalLink key={link.href} href={link.href}>
+                  {link.label}
+                </ExternalLink>
+              ))}
+            </p>
+          )}
+        </div>
+      )}
+    </dialog>
   );
 }
 
 export default function App() {
   const [theme, setTheme] = useState(getInitialTheme);
   const [filter, setFilter] = useState('all');
+  const [showAll, setShowAll] = useState(false);
+  const [selected, setSelected] = useState(null);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -111,7 +169,11 @@ export default function App() {
     }
   }, [theme]);
 
-  const shown = filter === 'all' ? projects : projects.filter((p) => p.kind === filter);
+  const matching = filter === 'all' ? projects : projects.filter((p) => p.kind === filter);
+  // the featured cut only applies to the unfiltered view
+  const expanded = showAll || filter !== 'all';
+  const shown = expanded ? matching : matching.filter((p) => p.featured);
+  const hidden = matching.length - shown.length;
 
   return (
     <>
@@ -171,7 +233,7 @@ export default function App() {
         </section>
 
         <section id="work">
-          <SectionHead index="01" title="Selected work">
+          <SectionHead index="01" title="Projects">
             <div className="filters" role="group" aria-label="Filter projects">
               {FILTERS.map((item) => (
                 <button
@@ -187,9 +249,16 @@ export default function App() {
           </SectionHead>
           <div className="projects">
             {shown.map((project) => (
-              <ProjectCard key={project.title} project={project} />
+              <ProjectCard key={project.title} project={project} onOpen={setSelected} />
             ))}
           </div>
+          {filter === 'all' && (
+            <p className="projects-more">
+              <button type="button" className="button ghost" onClick={() => setShowAll(!showAll)}>
+                {showAll ? 'Show selected projects only' : `Show ${hidden} more projects`}
+              </button>
+            </p>
+          )}
         </section>
 
         <section id="experience">
@@ -297,6 +366,8 @@ export default function App() {
         </p>
         <a href="#top">Back to top</a>
       </footer>
+
+      <ProjectDialog project={selected} onClose={() => setSelected(null)} />
     </>
   );
 }
