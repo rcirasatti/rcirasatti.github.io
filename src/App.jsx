@@ -117,26 +117,37 @@ function Portrait({ motif }) {
   );
 }
 
-function ProjectRow({ project, number, onOpen }) {
+const ROW_LABELS = { live: 'Live site', demo: 'Demo', code: 'Code' };
+
+function RowLink({ link }) {
+  if (!link) return <span className="work-link" />;
   return (
-    <li>
-      <button type="button" className="work" onClick={() => onOpen(project)}>
-        <span className="work-number">{String(number).padStart(2, '0')}</span>
-        <span className="work-main">
-          <span className="work-title">{project.title}</span>
-          <span className="work-role">
-            {project.role} · {project.context}
-          </span>
-        </span>
-        <span className="work-kind">{kinds[project.kind]}</span>
-        <span className="work-year">{project.year}</span>
-        <span className="status" data-status={project.status}>
-          {project.status}
-        </span>
-        <span className="work-arrow" aria-hidden="true">
-          →
+    <ExternalLink className="work-link" href={link.href}>
+      {ROW_LABELS[link.type]}
+    </ExternalLink>
+  );
+}
+
+// The title opens the details; the two links beside it go straight to the site and the code.
+function ProjectRow({ project, number, onOpen }) {
+  const site =
+    project.links.find((link) => link.type === 'live') ||
+    project.links.find((link) => link.type === 'demo');
+  const code = project.links.find((link) => link.type === 'code');
+
+  return (
+    <li className="work">
+      <span className="work-number">{String(number).padStart(2, '0')}</span>
+      <button type="button" className="work-open" onClick={() => onOpen(project)}>
+        <span className="work-title">{project.title}</span>
+        <span className="work-role">
+          {project.role} · {project.year}
         </span>
       </button>
+      <span className="work-links">
+        <RowLink link={site} />
+        <RowLink link={code} />
+      </span>
     </li>
   );
 }
@@ -200,6 +211,19 @@ function ProjectDialog({ project, position, total, motif, onClose, onStep }) {
             <p className="work-role">
               {project.role} · {project.context}
             </p>
+            {project.links.length > 0 && (
+              <p className="dialog-links">
+                {project.links.map((link) => (
+                  <ExternalLink
+                    key={link.href}
+                    className={link.type === 'code' ? 'button ghost' : 'button'}
+                    href={link.href}
+                  >
+                    {link.label}
+                  </ExternalLink>
+                ))}
+              </p>
+            )}
             <p>{project.summary}</p>
             {project.points.length > 0 && (
               <ul className="points">
@@ -213,15 +237,6 @@ function ProjectDialog({ project, position, total, motif, onClose, onStep }) {
                 <li key={tech}>{tech}</li>
               ))}
             </ul>
-            {project.links.length > 0 && (
-              <p className="link-row">
-                {project.links.map((link) => (
-                  <ExternalLink key={link.href} href={link.href}>
-                    {link.label}
-                  </ExternalLink>
-                ))}
-              </p>
-            )}
             {(project.images || []).map((image) => (
               <figure className="dialog-figure" key={image.src}>
                 <img src={image.src} alt={image.alt} loading="lazy" />
@@ -381,6 +396,10 @@ export default function App() {
               ))}
             </div>
           </SectionHead>
+          <p className="works-hint">
+            Select a title for details. <strong>Live site</strong>, <strong>Demo</strong>, and{' '}
+            <strong>Code</strong> open in a new tab.
+          </p>
           <ol className="works">
             {shown.map((project, index) => (
               <ProjectRow

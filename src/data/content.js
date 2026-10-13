@@ -35,7 +35,12 @@ export const kinds = {
   design: 'Design & prototype',
 };
 
-const gh = (repo) => ({ label: 'Source', href: `https://github.com/rcirasatti/${repo}` });
+// Link types: 'live' (the real site), 'demo' (a hosted preview), 'code' (source), 'doc' (a record or paper).
+const gh = (repo) => ({
+  type: 'code',
+  label: 'Source code',
+  href: `https://github.com/rcirasatti/${repo}`,
+});
 
 // `featured` projects show first; the rest appear under "Show all".
 export const projects = [
@@ -59,7 +64,7 @@ export const projects = [
       'Integration with the lecturer data API.',
     ],
     stack: ['Laravel 11', 'PHP', 'MySQL', 'REST API'],
-    links: [{ label: 'polines.ac.id', href: 'https://polines.ac.id' }],
+    links: [{ type: 'live', label: 'polines.ac.id', href: 'https://polines.ac.id' }],
   },
   {
     title: 'Intelligent cost estimation for an ERP',
@@ -86,6 +91,7 @@ export const projects = [
     stack: ['Python', 'Scikit-learn', 'XGBoost', 'Laravel'],
     links: [
       {
+        type: 'doc',
         label: 'Thesis record',
         href: 'https://etd.polines.ac.id/index.php?p=show_detail&id=16945',
       },
@@ -130,16 +136,22 @@ export const projects = [
     points: [],
     stack: ['React', 'TypeScript', 'Vite', 'Laravel'],
     links: [
-      { label: 'omahiot.com', href: 'https://omahiot.com' },
+      { type: 'live', label: 'omahiot.com', href: 'https://omahiot.com' },
       {
+        type: 'demo',
         label: 'First version demo',
         href: 'https://rcirasatti.github.io/LandingPage-OmahIot/',
       },
       {
-        label: 'First version source',
+        type: 'code',
+        label: 'First version source code',
         href: 'https://github.com/rcirasatti/LandingPage-OmahIot',
       },
-      { label: 'CMS source', href: 'https://github.com/rcirasatti/cms-webprofile' },
+      {
+        type: 'code',
+        label: 'CMS source code',
+        href: 'https://github.com/rcirasatti/cms-webprofile',
+      },
     ],
   },
   {
@@ -187,7 +199,11 @@ export const projects = [
     points: [],
     stack: ['Laravel', 'MySQL'],
     links: [
-      { label: 'karangtarunabatursari.com', href: 'https://karangtarunabatursari.com' },
+      {
+        type: 'live',
+        label: 'karangtarunabatursari.com',
+        href: 'https://karangtarunabatursari.com',
+      },
       gh('cms-karangtaruna'),
     ],
   },
@@ -264,7 +280,11 @@ export const projects = [
     points: [],
     stack: ['Laravel', 'React', 'TypeScript'],
     links: [
-      { label: 'Prototype demo', href: 'https://rcirasatti.github.io/orari-ascend/' },
+      {
+        type: 'demo',
+        label: 'Prototype demo',
+        href: 'https://rcirasatti.github.io/orari-ascend/',
+      },
       gh('orari'),
     ],
   },
@@ -325,7 +345,9 @@ export const projects = [
       'A React and TypeScript interface prototype for a school foundation, with overview, financial management, and inventory pages running on sample data.',
     points: [],
     stack: ['React', 'TypeScript', 'Tailwind CSS'],
-    links: [{ label: 'Prototype demo', href: 'https://rcirasatti.github.io/yayasan/' }],
+    links: [
+      { type: 'demo', label: 'Prototype demo', href: 'https://rcirasatti.github.io/yayasan/' },
+    ],
   },
   {
     title: 'Polines website redesign concept',
@@ -346,7 +368,11 @@ export const projects = [
     points: [],
     stack: ['React', 'TypeScript', 'Tailwind CSS'],
     links: [
-      { label: 'Concept demo', href: 'https://rcirasatti.github.io/polines-elevate/' },
+      {
+        type: 'demo',
+        label: 'Concept demo',
+        href: 'https://rcirasatti.github.io/polines-elevate/',
+      },
       gh('polines-elevate'),
     ],
   },
