@@ -66,7 +66,7 @@ function ExternalLink({ href, children, className }) {
 function SectionHead({ index, title, motif, children }) {
   return (
     <header className="section-head">
-      <Batik motif={motif} className="section-strip" />
+      <Batik motif={motif} className="section-strip" rowHeight={24} />
       <p className="eyebrow">{index}</p>
       <h2>{title}</h2>
       {children}
@@ -112,6 +112,9 @@ function ProjectRow({ project, number, onOpen }) {
         <span className="status" data-status={project.status}>
           {project.status}
         </span>
+        <span className="work-arrow" aria-hidden="true">
+          →
+        </span>
       </button>
     </li>
   );
@@ -139,7 +142,7 @@ function ProjectDialog({ project, motif, onClose }) {
     >
       {project && (
         <>
-          <Batik motif={motif} className="dialog-strip" />
+          <Batik motif={motif} className="dialog-strip" rowHeight={24} />
           <div className="dialog-body">
             <button type="button" className="chip dialog-close" onClick={onClose}>
               Close
@@ -248,15 +251,14 @@ export default function App() {
       <main id="main">
         <section className="hero" id="top">
           <div className="hero-text">
-            <p className="eyebrow">Sugeng rawuh · Welcome</p>
+            <p className="eyebrow">
+              {profile.role} · {profile.location}
+            </p>
             <h1>
               Rucirasatti
               <br />
               <em>Nariswana</em>
             </h1>
-            <p className="hero-role">
-              {profile.role} · {profile.location}
-            </p>
             <p className="lede">{profile.intro}</p>
             <p className="actions">
               <a className="button" href={profile.cv} download>
@@ -275,7 +277,7 @@ export default function App() {
         </section>
 
         <div className="cloth">
-          <Batik motif={motif} className="cloth-pattern" />
+          <Batik motif={motif} className="cloth-pattern" drift />
           <p className="cloth-caption">
             <code>
               batik.{motif}({'{'} seed: &quot;{batikSeed}&quot; {'}'})
@@ -412,7 +414,7 @@ export default function App() {
         </section>
 
         <section id="contact" className="contact">
-          <SectionHead index="05" title="Matur nuwun. Let's talk." motif={motif} />
+          <SectionHead index="05" title="Let's talk" motif={motif} />
           <p className="lede">
             I am open to web development and data roles. Email is the fastest way to reach me.
           </p>

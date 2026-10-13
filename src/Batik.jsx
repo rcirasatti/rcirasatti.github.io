@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import { batikSeed } from './data/content';
 
 // The seed nudges scale and angle, so the cloth is tied to a name.
@@ -72,10 +72,18 @@ const TILES = {
   truntum: { width: 36, height: 36, turn: 0, Tile: Truntum },
 };
 
+function prefersReducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
 // Decorative cloth: an SVG pattern that fills whatever box it is given.
-export default function Batik({ motif, className }) {
+// `rowHeight` sizes the tile so one full row of the motif fits a strip of that height.
+// `drift` slides the cloth slowly sideways.
+export default function Batik({ motif, className, rowHeight, drift }) {
   const id = useId();
+  const [still] = useState(prefersReducedMotion);
   const { width, height, turn, Tile } = TILES[motif];
+  const size = rowHeight ? rowHeight / height : scale;
 
   return (
     <svg className={`batik ${className || ''}`} aria-hidden="true" focusable="false">
@@ -85,9 +93,21 @@ export default function Batik({ motif, className }) {
           width={width}
           height={height}
           patternUnits="userSpaceOnUse"
-          patternTransform={`scale(${scale}) rotate(${turn})`}
+          patternTransform={`scale(${size}) rotate(${turn})`}
         >
-          <g fill="none" stroke="currentColor" strokeWidth="1.1">
+          {drift && !still && (
+            <animateTransform
+              attributeName="patternTransform"
+              type="translate"
+              additive="sum"
+              from="0 0"
+              to={`${width} 0`}
+              dur="36s"
+              repeatCount="indefinite"
+            />
+          )}
+          {/* keep lines readable when the tile is scaled down */}
+          <g fill="none" stroke="currentColor" strokeWidth={Math.min(2, 1.1 / Math.sqrt(size))}>
             <Tile />
           </g>
         </pattern>
