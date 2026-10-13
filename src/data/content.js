@@ -11,7 +11,7 @@ export const profile = {
 };
 
 export const facts = [
-  { value: '8', label: 'websites built for Politeknik Negeri Semarang, central portal live' },
+  { value: '1+', label: 'year of professional experience in web development and data' },
   { value: '3.91', label: 'GPA out of 4.00, Politeknik Negeri Semarang' },
   { value: '2', label: 'journal articles published in 2025' },
   { value: '1', label: 'registered software copyright' },
