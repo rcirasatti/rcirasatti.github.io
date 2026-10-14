@@ -18,4 +18,9 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
   },
+  {
+    // Decap CMS injects `h` and `CMS` into the admin page.
+    files: ['public/admin/preview.js'],
+    languageOptions: { globals: { h: 'readonly', CMS: 'readonly' } },
+  },
 ])

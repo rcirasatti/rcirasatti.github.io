@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/admin-css.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/admin-css.mjs",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

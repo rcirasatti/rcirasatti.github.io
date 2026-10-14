@@ -19,33 +19,37 @@ collections:
     slug: '{{slug}}'
     summary: '{{title}} ({{year}})'
     sortable_fields: ['order', 'title', 'year']
-    editor:
-      preview: false
     fields:
-      - { name: order, label: Order, widget: number, value_type: int, min: 0, default: 0, hint: 'Lower numbers show first. New projects start at 0, so they appear at the top.' }
-      - { name: title, label: Title, widget: string }
-      - { name: kind, label: Kind, widget: select, options: [{ label: Web & apps, value: web }, { label: Data & ML, value: data }, { label: Design & prototype, value: design }] }
-      - { name: year, label: Year, widget: string, hint: 'For example 2026 or 2025–2026' }
-      - { name: context, label: Context, widget: string, hint: 'Employer, course, or "Personal project"' }
-      - { name: role, label: Role, widget: string }
-      - { name: status, label: Status, widget: select, options: [Live, Deployed, Completed, Prototype, In development] }
-      - { name: featured, label: Featured, widget: boolean, default: false }
-      - name: images
-        label: Images
-        widget: list
-        required: false
-        fields:
-          - { name: src, label: Image, widget: image }
-          - { name: alt, label: Alt text, widget: string }
-          - { name: caption, label: Caption, widget: string, required: false }
-      - { name: summary, label: Summary, widget: text }
-      - { name: points, label: Highlights, widget: list, required: false, field: { name: point, label: Highlight, widget: string } }
-      - { name: stack, label: Stack, widget: list, field: { name: tech, label: Technology, widget: string } }
+      - { name: title, label: Judul project, widget: string, hint: 'Nama project, singkat dan jelas.' }
+      - { name: summary, label: Ringkasan, widget: text, hint: 'Satu atau dua kalimat: project ini apa dan untuk siapa.' }
+      - { name: kind, label: Kategori, widget: select, default: web, hint: 'Menentukan di filter mana project ini muncul.', options: [{ label: Web & apps, value: web }, { label: Data & ML, value: data }, { label: Design & prototype, value: design }] }
+      - { name: year, label: Tahun, widget: string, hint: 'Contoh: 2026 atau 2025–2026' }
+      - { name: role, label: Peran kamu, widget: string, hint: 'Contoh: Developer, Main contributor, Author' }
+      - { name: context, label: Konteks, widget: string, hint: 'Di mana project ini dikerjakan. Contoh: CV. OmahIoT, Undergraduate thesis, Personal project' }
+      - { name: status, label: Status, widget: select, default: Live, options: [Live, Deployed, Completed, Prototype, In development] }
+      - { name: stack, label: Teknologi, widget: list, collapsed: false, hint: 'Klik Add untuk menambah satu teknologi per baris, misalnya Laravel, React, MySQL.', field: { name: tech, label: Teknologi, widget: string } }
       - name: links
-        label: Links
+        label: Link
         widget: list
         required: false
+        collapsed: true
+        summary: '{{fields.label}}'
+        hint: 'Situs asli, demo, kode di GitHub, atau dokumen. Baris pertama bertipe Live atau Demo dipakai sebagai tombol di daftar.'
         fields:
-          - { name: type, label: Type, widget: select, options: [{ label: Live site, value: live }, { label: Demo, value: demo }, { label: Source code, value: code }, { label: Document or paper, value: doc }] }
-          - { name: label, label: Label, widget: string }
-          - { name: href, label: URL, widget: string }
+          - { name: type, label: Jenis link, widget: select, default: live, options: [{ label: Situs asli, value: live }, { label: Demo, value: demo }, { label: Kode sumber, value: code }, { label: Dokumen atau paper, value: doc }] }
+          - { name: label, label: Teks tombol, widget: string, hint: 'Contoh: polines.ac.id atau Source code' }
+          - { name: href, label: URL, widget: string, hint: 'Mulai dengan https://' }
+      - name: images
+        label: Gambar
+        widget: list
+        required: false
+        collapsed: true
+        summary: '{{fields.alt}}'
+        hint: 'Screenshot project. Boleh dikosongkan.'
+        fields:
+          - { name: src, label: File gambar, widget: image, hint: 'Upload gambar baru atau pilih yang sudah ada.' }
+          - { name: alt, label: Deskripsi gambar, widget: string, hint: 'Satu kalimat yang menjelaskan isi gambar, untuk pembaca layar.' }
+          - { name: caption, label: Keterangan, widget: string, required: false, hint: 'Tampil di bawah gambar. Boleh kosong.' }
+      - { name: points, label: Poin penting, widget: list, required: false, hint: 'Hasil atau fitur utama, satu poin per baris. Boleh kosong.', field: { name: point, label: Poin, widget: string } }
+      - { name: featured, label: Tampilkan di bagian utama, widget: boolean, default: false, hint: 'Hidup: project muncul langsung. Mati: hanya muncul setelah klik Show all.' }
+      - { name: order, label: Urutan, widget: number, value_type: int, min: 0, default: 0, hint: 'Angka kecil tampil lebih dulu. Project baru bernilai 0, jadi muncul paling atas.' }
