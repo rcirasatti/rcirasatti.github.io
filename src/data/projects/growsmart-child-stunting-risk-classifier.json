@@ -1,0 +1,24 @@
+{
+  "order": 6,
+  "title": "GrowSmart: child stunting risk classifier",
+  "kind": "data",
+  "year": "2025",
+  "context": "Coding Camp capstone, team project",
+  "role": "Machine learning",
+  "status": "Completed",
+  "featured": true,
+  "summary": "The machine learning component of the capstone: data collection, SMOTE balancing, and a neural network that classifies child stunting risk with 98.75% accuracy.",
+  "points": [],
+  "stack": [
+    "Python",
+    "TensorFlow/Keras",
+    "SMOTE"
+  ],
+  "links": [
+    {
+      "type": "code",
+      "label": "Source code",
+      "href": "https://github.com/rcirasatti/GrowSmart-PrediksiStuntingAnak"
+    }
+  ]
+}

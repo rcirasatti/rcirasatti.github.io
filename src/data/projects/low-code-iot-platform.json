@@ -1,0 +1,17 @@
+{
+  "order": 19,
+  "title": "Low-Code IoT platform",
+  "kind": "web",
+  "year": "2025",
+  "context": "CV. OmahIoT internship",
+  "role": "Contributor",
+  "status": "In development",
+  "summary": "A Laravel platform for managing IoT devices, datastreams, and dashboard widgets. I contributed to a team project.",
+  "points": [],
+  "stack": [
+    "Laravel 11",
+    "Alpine.js",
+    "MySQL"
+  ],
+  "links": []
+}

@@ -1,0 +1,30 @@
+{
+  "order": 16,
+  "title": "Foundation finance and asset dashboard",
+  "kind": "design",
+  "year": "2026",
+  "context": "CV. OmahIoT",
+  "role": "Interface prototype",
+  "status": "Prototype",
+  "images": [
+    {
+      "src": "/img/yayasan.jpg",
+      "alt": "Dashboard overview with balance cards, a cash flow chart, and an asset condition chart",
+      "caption": "Overview page, running on sample data."
+    }
+  ],
+  "summary": "A React and TypeScript interface prototype for a school foundation, with overview, financial management, and inventory pages running on sample data.",
+  "points": [],
+  "stack": [
+    "React",
+    "TypeScript",
+    "Tailwind CSS"
+  ],
+  "links": [
+    {
+      "type": "demo",
+      "label": "Prototype demo",
+      "href": "https://rcirasatti.github.io/yayasan/"
+    }
+  ]
+}

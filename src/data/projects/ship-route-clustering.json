@@ -1,0 +1,23 @@
+{
+  "order": 22,
+  "title": "Ship route clustering",
+  "kind": "data",
+  "year": "2025",
+  "context": "Coding Camp project",
+  "role": "Author",
+  "status": "Completed",
+  "summary": "Density-based clustering (DBSCAN) of ship navigation data, followed by route classification.",
+  "points": [],
+  "stack": [
+    "Python",
+    "Scikit-learn",
+    "DBSCAN"
+  ],
+  "links": [
+    {
+      "type": "code",
+      "label": "Source code",
+      "href": "https://github.com/rcirasatti/Clustering_and_Classification"
+    }
+  ]
+}

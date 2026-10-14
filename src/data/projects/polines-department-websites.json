@@ -1,0 +1,20 @@
+{
+  "order": 9,
+  "title": "Polines department websites",
+  "kind": "web",
+  "year": "2026",
+  "context": "CV. OmahIoT",
+  "role": "Main contributor",
+  "status": "In development",
+  "featured": true,
+  "summary": "Five department websites for Politeknik Negeri Semarang, each with its own Laravel CMS: Mechanical Engineering, Accounting, Business Administration, Electrical Engineering, and Civil Engineering.",
+  "points": [
+    "News, agenda, and announcements can be sent to the central portal for approval."
+  ],
+  "stack": [
+    "Laravel 11",
+    "PHP",
+    "MySQL"
+  ],
+  "links": []
+}

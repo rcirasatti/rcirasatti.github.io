@@ -1,0 +1,23 @@
+{
+  "order": 25,
+  "title": "Bike sharing data analysis",
+  "kind": "data",
+  "year": "2025",
+  "context": "Coding Camp project",
+  "role": "Author",
+  "status": "Completed",
+  "summary": "Exploratory analysis of bike sharing data, with a Streamlit dashboard for the results.",
+  "points": [],
+  "stack": [
+    "Python",
+    "Pandas",
+    "Streamlit"
+  ],
+  "links": [
+    {
+      "type": "code",
+      "label": "Source code",
+      "href": "https://github.com/rcirasatti/AnalisisData_BikeSharing"
+    }
+  ]
+}

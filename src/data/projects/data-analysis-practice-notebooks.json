@@ -1,0 +1,22 @@
+{
+  "order": 26,
+  "title": "Data analysis practice notebooks",
+  "kind": "data",
+  "year": "2025",
+  "context": "Coding Camp exercise",
+  "role": "Author",
+  "status": "Completed",
+  "summary": "Practice notebooks for data analysis with Python.",
+  "points": [],
+  "stack": [
+    "Python",
+    "Pandas"
+  ],
+  "links": [
+    {
+      "type": "code",
+      "label": "Source code",
+      "href": "https://github.com/rcirasatti/Lat_DataAnalisis_Python"
+    }
+  ]
+}

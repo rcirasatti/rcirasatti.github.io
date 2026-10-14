@@ -1,0 +1,23 @@
+{
+  "order": 21,
+  "title": "Sentiment analysis on 64,000+ app reviews",
+  "kind": "data",
+  "year": "2025",
+  "context": "Coding Camp project",
+  "role": "Author",
+  "status": "Completed",
+  "summary": "Text preprocessing, lexicon-based labelling, and a comparison of classical and deep learning classifiers on Google Play reviews.",
+  "points": [],
+  "stack": [
+    "Python",
+    "TensorFlow",
+    "Scikit-learn"
+  ],
+  "links": [
+    {
+      "type": "code",
+      "label": "Source code",
+      "href": "https://github.com/rcirasatti/SentimenAnalisis_RatingWhatsapp"
+    }
+  ]
+}

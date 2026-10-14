@@ -1,0 +1,35 @@
+{
+  "order": 17,
+  "title": "Polines website redesign concept",
+  "kind": "design",
+  "year": "2025",
+  "context": "CV. OmahIoT internship",
+  "role": "Design prototype",
+  "status": "Prototype",
+  "images": [
+    {
+      "src": "/img/polines-redesign.jpg",
+      "alt": "Home page of the Polines website redesign concept",
+      "caption": "Redesign concept home page."
+    }
+  ],
+  "summary": "A redesign concept for polines.ac.id in React and TypeScript, with a sitemap and a style guide.",
+  "points": [],
+  "stack": [
+    "React",
+    "TypeScript",
+    "Tailwind CSS"
+  ],
+  "links": [
+    {
+      "type": "demo",
+      "label": "Concept demo",
+      "href": "https://rcirasatti.github.io/polines-elevate/"
+    },
+    {
+      "type": "code",
+      "label": "Source code",
+      "href": "https://github.com/rcirasatti/polines-elevate"
+    }
+  ]
+}

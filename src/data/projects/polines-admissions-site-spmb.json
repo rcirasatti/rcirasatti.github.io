@@ -1,0 +1,17 @@
+{
+  "order": 10,
+  "title": "Polines admissions site (SPMB)",
+  "kind": "web",
+  "year": "2026",
+  "context": "CV. OmahIoT",
+  "role": "Co-developer",
+  "status": "In development",
+  "summary": "Admissions information website for new student intake at Politeknik Negeri Semarang.",
+  "points": [],
+  "stack": [
+    "Laravel 11",
+    "PHP",
+    "MySQL"
+  ],
+  "links": []
+}

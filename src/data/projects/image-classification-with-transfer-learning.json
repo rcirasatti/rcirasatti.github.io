@@ -1,0 +1,23 @@
+{
+  "order": 23,
+  "title": "Image classification with transfer learning",
+  "kind": "data",
+  "year": "2025",
+  "context": "Coding Camp project",
+  "role": "Author",
+  "status": "Completed",
+  "summary": "An image classifier built on a pretrained ResNet50 network.",
+  "points": [],
+  "stack": [
+    "Python",
+    "TensorFlow/Keras",
+    "ResNet50"
+  ],
+  "links": [
+    {
+      "type": "code",
+      "label": "Source code",
+      "href": "https://github.com/rcirasatti/KlasifikasiGambarMakanan"
+    }
+  ]
+}

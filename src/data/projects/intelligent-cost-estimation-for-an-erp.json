@@ -1,0 +1,36 @@
+{
+  "order": 2,
+  "title": "Intelligent cost estimation for an ERP",
+  "kind": "data",
+  "year": "2026",
+  "context": "Undergraduate thesis",
+  "role": "Author",
+  "status": "Completed",
+  "featured": true,
+  "images": [
+    {
+      "src": "/img/thesis-architecture.jpg",
+      "alt": "Architecture diagram: model development pipeline, integration layer, and the ERP web application flow",
+      "caption": "System architecture from the thesis."
+    }
+  ],
+  "summary": "An Owner Estimate Cost (OEC) estimation feature for a project-management ERP, built by comparing seven algorithms on 110 real transactions.",
+  "points": [
+    "Linear Regression, SVR, Ridge, Random Forest, XGBoost, ANN, and Moving Average, ranked with Borda Count.",
+    "Segmented Linear Regression was selected: R² 0.77, MAPE 10.7%.",
+    "Integrated into the Laravel backend with 112 ms inference latency."
+  ],
+  "stack": [
+    "Python",
+    "Scikit-learn",
+    "XGBoost",
+    "Laravel"
+  ],
+  "links": [
+    {
+      "type": "doc",
+      "label": "Thesis record",
+      "href": "https://etd.polines.ac.id/index.php?p=show_detail&id=16945"
+    }
+  ]
+}

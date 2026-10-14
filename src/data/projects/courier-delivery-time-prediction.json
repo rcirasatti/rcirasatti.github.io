@@ -1,0 +1,19 @@
+{
+  "order": 8,
+  "title": "Courier delivery-time prediction",
+  "kind": "data",
+  "year": "2026",
+  "context": "CV. OmahIoT",
+  "role": "Data analyst",
+  "status": "Completed",
+  "featured": true,
+  "summary": "Processed three months of courier shipment data and developed a model that predicts delivery time. About 98.6% of predictions fall within one day.",
+  "points": [],
+  "stack": [
+    "Python",
+    "Pandas",
+    "Scikit-learn",
+    "TensorFlow/Keras"
+  ],
+  "links": []
+}

@@ -1,0 +1,52 @@
+{
+  "order": 4,
+  "title": "OmahIoT company profile website",
+  "kind": "web",
+  "year": "2025–2026",
+  "context": "CV. OmahIoT",
+  "role": "Developer and designer",
+  "status": "Live",
+  "featured": true,
+  "images": [
+    {
+      "src": "/img/omahiot.jpg",
+      "alt": "Home page of the current OmahIoT company website",
+      "caption": "Current site at omahiot.com, which I designed."
+    },
+    {
+      "src": "/img/omahiot-v1.jpg",
+      "alt": "Home page of the first OmahIoT company website",
+      "caption": "First version, which I built in React and Vite."
+    }
+  ],
+  "summary": "The OmahIoT company website. I built the first version in React and Vite with a Laravel CMS, then designed the current site at omahiot.com.",
+  "points": [],
+  "stack": [
+    "React",
+    "TypeScript",
+    "Vite",
+    "Laravel"
+  ],
+  "links": [
+    {
+      "type": "live",
+      "label": "omahiot.com",
+      "href": "https://omahiot.com"
+    },
+    {
+      "type": "demo",
+      "label": "First version demo",
+      "href": "https://rcirasatti.github.io/LandingPage-OmahIot/"
+    },
+    {
+      "type": "code",
+      "label": "First version source code",
+      "href": "https://github.com/rcirasatti/LandingPage-OmahIot"
+    },
+    {
+      "type": "code",
+      "label": "CMS source code",
+      "href": "https://github.com/rcirasatti/cms-webprofile"
+    }
+  ]
+}

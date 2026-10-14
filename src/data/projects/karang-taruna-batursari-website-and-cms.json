@@ -1,0 +1,34 @@
+{
+  "order": 7,
+  "title": "Karang Taruna Batursari website and CMS",
+  "kind": "web",
+  "year": "2025",
+  "context": "CV. OmahIoT internship",
+  "role": "Co-developer, team of two",
+  "status": "Live",
+  "featured": true,
+  "images": [
+    {
+      "src": "/img/karang-taruna.jpg",
+      "alt": "Home page of the Karang Taruna Tlogo Batursari website"
+    }
+  ],
+  "summary": "Public website and content management system for a youth organisation, built by a team of two.",
+  "points": [],
+  "stack": [
+    "Laravel",
+    "MySQL"
+  ],
+  "links": [
+    {
+      "type": "live",
+      "label": "karangtarunabatursari.com",
+      "href": "https://karangtarunabatursari.com"
+    },
+    {
+      "type": "code",
+      "label": "Source code",
+      "href": "https://github.com/rcirasatti/cms-karangtaruna"
+    }
+  ]
+}

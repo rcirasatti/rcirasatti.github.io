@@ -1,0 +1,17 @@
+{
+  "order": 30,
+  "title": "Business Travel Order Information System (SPPD)",
+  "kind": "web",
+  "year": "2022",
+  "context": "Final project, SMK Negeri 1 Jenangan",
+  "role": "Author",
+  "status": "Completed",
+  "summary": "My vocational school final project, which earned the \"Very Competent\" result in the competency test.",
+  "points": [],
+  "stack": [
+    "CodeIgniter 3",
+    "PHP",
+    "MySQL"
+  ],
+  "links": []
+}

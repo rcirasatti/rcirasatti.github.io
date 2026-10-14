@@ -1,0 +1,17 @@
+{
+  "order": 13,
+  "title": "FTTH route data preparation",
+  "kind": "data",
+  "year": "2026",
+  "context": "CV. OmahIoT",
+  "role": "Data preparation",
+  "status": "Completed",
+  "summary": "Cleaned field coordinate and cost-estimate data used for fibre-to-the-home route optimization.",
+  "points": [],
+  "stack": [
+    "Python",
+    "Pandas",
+    "Excel"
+  ],
+  "links": []
+}

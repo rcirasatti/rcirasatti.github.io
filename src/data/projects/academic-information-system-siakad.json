@@ -1,0 +1,17 @@
+{
+  "order": 14,
+  "title": "Academic information system (SIAKAD)",
+  "kind": "web",
+  "year": "2026",
+  "context": "CV. OmahIoT",
+  "role": "Bug fixes",
+  "status": "In development",
+  "summary": "An academic information system built by the OmahIoT team with Laravel 11, Vue.js, and Inertia. My part was fixing bugs.",
+  "points": [],
+  "stack": [
+    "Laravel 11",
+    "Vue.js",
+    "Inertia.js"
+  ],
+  "links": []
+}

@@ -1,0 +1,17 @@
+{
+  "order": 11,
+  "title": "UPA TIK website",
+  "kind": "web",
+  "year": "2026",
+  "context": "CV. OmahIoT",
+  "role": "Contributor",
+  "status": "In development",
+  "summary": "Bilingual (Indonesian and English) website for the Polines IT unit. I worked on CMS modules, language routing, and content sync to the central portal.",
+  "points": [],
+  "stack": [
+    "Laravel 11",
+    "PHP",
+    "MySQL"
+  ],
+  "links": []
+}

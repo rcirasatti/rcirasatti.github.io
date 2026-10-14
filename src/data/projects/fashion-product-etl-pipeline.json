@@ -1,0 +1,22 @@
+{
+  "order": 24,
+  "title": "Fashion product ETL pipeline",
+  "kind": "data",
+  "year": "2025",
+  "context": "Coding Camp project",
+  "role": "Author",
+  "status": "Completed",
+  "summary": "An extract, transform, load pipeline that collects product data from a website, cleans it, and stores the result.",
+  "points": [],
+  "stack": [
+    "Python",
+    "ETL"
+  ],
+  "links": [
+    {
+      "type": "code",
+      "label": "Source code",
+      "href": "https://github.com/rcirasatti/ETL-Pipeline-Fashion-Product"
+    }
+  ]
+}

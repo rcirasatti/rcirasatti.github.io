@@ -1,0 +1,24 @@
+{
+  "order": 3,
+  "title": "Project-management ERP",
+  "kind": "web",
+  "year": "2025",
+  "context": "CV. OmahIoT internship",
+  "role": "Developer",
+  "status": "Deployed",
+  "featured": true,
+  "summary": "A web-based ERP covering projects, budgets, quotations, inventory, suppliers, and tasks. Deployed to production.",
+  "points": [],
+  "stack": [
+    "Laravel 11",
+    "PHP",
+    "MySQL"
+  ],
+  "links": [
+    {
+      "type": "code",
+      "label": "Source code",
+      "href": "https://github.com/rcirasatti/ERP-PM"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "order": 31,
+  "title": "Landing page HTML template",
+  "kind": "web",
+  "year": "2021",
+  "context": "Kazuya Media Indonesia internship",
+  "role": "Developer",
+  "status": "Completed",
+  "images": [
+    {
+      "src": "/img/kazuya-landing.jpg",
+      "alt": "Company landing page template built during the Kazuya Media internship"
+    }
+  ],
+  "summary": "My internship project: a responsive company landing page template in HTML and Bootstrap, converted from a design.",
+  "points": [],
+  "stack": [
+    "HTML",
+    "CSS",
+    "Bootstrap"
+  ],
+  "links": []
+}

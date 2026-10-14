@@ -1,0 +1,35 @@
+{
+  "order": 1,
+  "title": "Polines central portal",
+  "kind": "web",
+  "year": "2026",
+  "context": "CV. OmahIoT",
+  "role": "Main contributor",
+  "status": "Live",
+  "featured": true,
+  "images": [
+    {
+      "src": "/img/polines.jpg",
+      "alt": "Home page of the Politeknik Negeri Semarang central portal"
+    }
+  ],
+  "summary": "The main Politeknik Negeri Semarang website, live at polines.ac.id, built on Laravel 11 with a content management system.",
+  "points": [
+    "Token-based REST API that receives news, agenda, and announcements from department CMSs.",
+    "Admin approval workflow, so synced content is reviewed before it appears on the portal.",
+    "Integration with the lecturer data API."
+  ],
+  "stack": [
+    "Laravel 11",
+    "PHP",
+    "MySQL",
+    "REST API"
+  ],
+  "links": [
+    {
+      "type": "live",
+      "label": "polines.ac.id",
+      "href": "https://polines.ac.id"
+    }
+  ]
+}

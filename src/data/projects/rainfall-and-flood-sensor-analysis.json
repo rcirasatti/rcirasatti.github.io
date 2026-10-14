@@ -1,0 +1,17 @@
+{
+  "order": 18,
+  "title": "Rainfall and flood sensor analysis",
+  "kind": "data",
+  "year": "2025",
+  "context": "CV. OmahIoT internship",
+  "role": "Data analyst",
+  "status": "Completed",
+  "summary": "Analysis of rainfall and flood sensor data in Python: cleaning, outlier handling, time-series charts, and correlation analysis.",
+  "points": [],
+  "stack": [
+    "Python",
+    "Pandas",
+    "Matplotlib"
+  ],
+  "links": []
+}

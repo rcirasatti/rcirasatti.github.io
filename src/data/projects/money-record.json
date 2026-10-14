@@ -1,0 +1,22 @@
+{
+  "order": 28,
+  "title": "Money Record",
+  "kind": "web",
+  "year": "2025",
+  "context": "Coursework, Politeknik Negeri Semarang",
+  "role": "Author",
+  "status": "Completed",
+  "summary": "A personal finance app in Flutter for recording income and expenses.",
+  "points": [],
+  "stack": [
+    "Flutter",
+    "Dart"
+  ],
+  "links": [
+    {
+      "type": "code",
+      "label": "Source code",
+      "href": "https://github.com/rcirasatti/money_record"
+    }
+  ]
+}

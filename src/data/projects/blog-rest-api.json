@@ -1,0 +1,23 @@
+{
+  "order": 27,
+  "title": "Blog REST API",
+  "kind": "web",
+  "year": "2026",
+  "context": "Personal project",
+  "role": "Author",
+  "status": "Completed",
+  "summary": "A Laravel REST API for a blog with users, posts, and comments.",
+  "points": [],
+  "stack": [
+    "Laravel",
+    "PHP",
+    "REST API"
+  ],
+  "links": [
+    {
+      "type": "code",
+      "label": "Source code",
+      "href": "https://github.com/rcirasatti/blog-api"
+    }
+  ]
+}

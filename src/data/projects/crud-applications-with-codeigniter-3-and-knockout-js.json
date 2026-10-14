@@ -1,0 +1,17 @@
+{
+  "order": 32,
+  "title": "CRUD applications with CodeIgniter 3 and Knockout.js",
+  "kind": "web",
+  "year": "2021",
+  "context": "Kazuya Media Indonesia internship",
+  "role": "Developer",
+  "status": "Completed",
+  "summary": "Training applications that create, read, update, and delete records, using MVC in CodeIgniter 3 and MVVM in Knockout.js on MySQL.",
+  "points": [],
+  "stack": [
+    "CodeIgniter 3",
+    "Knockout.js",
+    "MySQL"
+  ],
+  "links": []
+}

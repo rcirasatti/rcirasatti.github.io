@@ -1,0 +1,35 @@
+{
+  "order": 12,
+  "title": "ORARI submission and verification system",
+  "kind": "web",
+  "year": "2026",
+  "context": "CV. OmahIoT",
+  "role": "Interface design and initial prototype",
+  "status": "In development",
+  "images": [
+    {
+      "src": "/img/orari.jpg",
+      "alt": "Landing page of the ORARI submission system prototype",
+      "caption": "Interface prototype."
+    }
+  ],
+  "summary": "A role-based system for submitting and verifying amateur radio (ORARI) applications. I designed the interface and built the initial Laravel prototype; a team continued development.",
+  "points": [],
+  "stack": [
+    "Laravel",
+    "React",
+    "TypeScript"
+  ],
+  "links": [
+    {
+      "type": "demo",
+      "label": "Prototype demo",
+      "href": "https://rcirasatti.github.io/orari-ascend/"
+    },
+    {
+      "type": "code",
+      "label": "Source code",
+      "href": "https://github.com/rcirasatti/orari"
+    }
+  ]
+}

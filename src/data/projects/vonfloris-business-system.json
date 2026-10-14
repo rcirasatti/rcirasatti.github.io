@@ -1,0 +1,17 @@
+{
+  "order": 20,
+  "title": "Vonfloris business system",
+  "kind": "web",
+  "year": "2025",
+  "context": "CV. OmahIoT internship",
+  "role": "Testing and enhancements",
+  "status": "Deployed",
+  "summary": "An existing Laravel system for a florist business covering sales, inventory, and rentals. I tested features and made enhancements.",
+  "points": [],
+  "stack": [
+    "Laravel",
+    "PHP",
+    "MySQL"
+  ],
+  "links": []
+}

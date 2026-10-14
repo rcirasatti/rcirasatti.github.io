@@ -1,0 +1,49 @@
+backend:
+  name: github
+  repo: rcirasatti/rcirasatti.github.io
+  branch: main
+  # Cloudflare Worker in oauth-proxy/ that handles the GitHub login.
+  base_url: https://portfolio-oauth.rcirasatti.workers.dev
+
+media_folder: public/img
+public_folder: /img
+
+collections:
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: src/data/projects
+    extension: json
+    format: json
+    create: true
+    slug: '{{slug}}'
+    summary: '{{title}} ({{year}})'
+    sortable_fields: ['order', 'title', 'year']
+    fields:
+      - { name: order, label: Order (1 = first, new projects default to the top), widget: number, value_type: int, min: 0, default: 0 }
+      - { name: title, label: Title, widget: string }
+      - { name: kind, label: Kind, widget: select, options: [{ label: Web & apps, value: web }, { label: Data & ML, value: data }, { label: Design & prototype, value: design }] }
+      - { name: year, label: Year, widget: string, hint: 'For example 2026 or 2025–2026' }
+      - { name: context, label: Context, widget: string, hint: 'Employer, course, or "Personal project"' }
+      - { name: role, label: Role, widget: string }
+      - { name: status, label: Status, widget: select, options: [Live, Deployed, Completed, Prototype, In development] }
+      - { name: featured, label: Featured, widget: boolean, default: false }
+      - name: images
+        label: Images
+        widget: list
+        required: false
+        fields:
+          - { name: src, label: Image, widget: image }
+          - { name: alt, label: Alt text, widget: string }
+          - { name: caption, label: Caption, widget: string, required: false }
+      - { name: summary, label: Summary, widget: text }
+      - { name: points, label: Highlights, widget: list, required: false, field: { name: point, label: Highlight, widget: string } }
+      - { name: stack, label: Stack, widget: list, field: { name: tech, label: Technology, widget: string } }
+      - name: links
+        label: Links
+        widget: list
+        required: false
+        fields:
+          - { name: type, label: Type, widget: select, options: [{ label: Live site, value: live }, { label: Demo, value: demo }, { label: Source code, value: code }, { label: Document or paper, value: doc }] }
+          - { name: label, label: Label, widget: string }
+          - { name: href, label: URL, widget: string }

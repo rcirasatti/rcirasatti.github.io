@@ -1,0 +1,16 @@
+{
+  "order": 15,
+  "title": "Graduation stage display",
+  "kind": "design",
+  "year": "2026",
+  "context": "CV. OmahIoT",
+  "role": "Prototype",
+  "status": "Prototype",
+  "summary": "An unfinished Laravel prototype that shows each graduate on stage screens, with Excel import and graduation sessions.",
+  "points": [],
+  "stack": [
+    "Laravel",
+    "JavaScript"
+  ],
+  "links": []
+}

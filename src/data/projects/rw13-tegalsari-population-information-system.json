@@ -1,0 +1,23 @@
+{
+  "order": 29,
+  "title": "RW13 Tegalsari population information system",
+  "kind": "web",
+  "year": "2024",
+  "context": "Project-based learning, Politeknik Negeri Semarang",
+  "role": "Team member",
+  "status": "Completed",
+  "summary": "A Laravel web application for managing neighbourhood population data, built as a team project.",
+  "points": [],
+  "stack": [
+    "Laravel",
+    "PHP",
+    "MySQL"
+  ],
+  "links": [
+    {
+      "type": "code",
+      "label": "Source code",
+      "href": "https://github.com/rcirasatti/pbl-sistem-penduduk"
+    }
+  ]
+}
