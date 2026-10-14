@@ -1,0 +1,50 @@
+{
+  "items": [
+    {
+      "title": "Web Developer & Data Analyst",
+      "org": "CV. OmahIoT, Semarang",
+      "dates": "Jan 2026 – Present",
+      "points": [
+        "Main contributor to Laravel 11 portals and CMS for Politeknik Negeri Semarang; the central portal is live at polines.ac.id.",
+        "Implemented the REST API and approval workflow that syncs department content to the central portal.",
+        "Built a microcredential course platform in Laravel.",
+        "Processed courier shipment datasets and developed a delivery-time model (about 98.6% of predictions within 1 day)."
+      ]
+    },
+    {
+      "title": "Data Science Facilitator",
+      "org": "Coding Camp powered by DBS Foundation, Remote",
+      "dates": "Feb 2026 – Jul 2026",
+      "points": [
+        "Guided a class of about 20 learners through 16 weekly consultation sessions (4.90/5.00) and assisted 14 instructor-led sessions (4.64/5.00)."
+      ]
+    },
+    {
+      "title": "Software Developer Intern",
+      "org": "CV. OmahIoT, Semarang",
+      "dates": "Aug 2025 – Dec 2025",
+      "points": [
+        "Built a web-based ERP for project management, deployed to production.",
+        "Built the first OmahIoT company profile website and its CMS; co-built the Karang Taruna Batursari website.",
+        "Analyzed rainfall and flood sensor data in Python."
+      ]
+    },
+    {
+      "title": "Machine Learning Engineer Cohort",
+      "org": "Coding Camp powered by DBS Foundation, Remote",
+      "dates": "Feb 2025 – Jul 2025",
+      "points": [
+        "Graduated with an average score of 93.2/100 across 936 training hours.",
+        "Built the machine learning component of the GrowSmart capstone."
+      ]
+    },
+    {
+      "title": "Web Programming Intern",
+      "org": "Kazuya Media Indonesia, Ponorogo",
+      "dates": "Jan 2021 – May 2021",
+      "points": [
+        "Built CRUD applications with CodeIgniter 3 and converted designs into responsive Bootstrap pages."
+      ]
+    }
+  ]
+}

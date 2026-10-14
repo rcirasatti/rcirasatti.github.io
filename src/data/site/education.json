@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "school": "Politeknik Negeri Semarang",
+      "detail": "Bachelor of Applied Science in Computer Engineering Technology, GPA 3.91/4.00",
+      "dates": "2022 – 2026"
+    },
+    {
+      "school": "SMK Negeri 1 Jenangan",
+      "detail": "Software Engineering, Competency Test: Very Competent",
+      "dates": "2019 – 2022"
+    }
+  ],
+  "certifications": [
+    "MikroTik Certified Network Associate (MTCNA), 2026",
+    "Oracle Academy Database Design, 2023",
+    "Dicoding: Applied Machine Learning",
+    "Dicoding: Data Analysis with Python",
+    "Dicoding: Fundamentals of Data Processing (ETL)",
+    "Dicoding: Cloud and Gen AI on AWS, 2026",
+    "Dicoding: Prompt Engineering for Software Developers, 2026"
+  ]
+}

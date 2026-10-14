@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "type": "Journal article",
+      "year": "2025",
+      "title": "Smart Water Quality Monitoring dengan IoT dan AI: Pendekatan XGBoost dalam Kelayakan Air Rumah Tangga",
+      "venue": "Journal of Scientech Research and Development, Vol. 6 No. 2",
+      "note": "Co-author (second of five).",
+      "href": "https://idm.or.id/JSCR/index.php/JSCR/article/view/753"
+    },
+    {
+      "type": "Journal article",
+      "year": "2025",
+      "title": "Information Retrieval Related to Information Regarding Covid-19 Using Transformers Architecture",
+      "venue": "Jurnal Teknik Informatika (JUTIF), Vol. 6 No. 2",
+      "note": "Co-author (sixth of six).",
+      "href": "https://jutif.if.unsoed.ac.id/index.php/jurnal/article/view/2606"
+    },
+    {
+      "type": "Registered copyright",
+      "year": "2023",
+      "title": "Deep learning semantic text and image search engine prototype for COVID-19 information",
+      "venue": "Surat Pencatatan Ciptaan (HKI) No. 000540382",
+      "note": "Co-creator (one of six).",
+      "href": null
+    }
+  ]
+}

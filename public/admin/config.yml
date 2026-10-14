@@ -54,3 +54,94 @@ collections:
       - { name: points, label: Poin penting, widget: list, required: false, hint: 'Hasil atau fitur utama, satu poin per baris. Boleh kosong.', field: { name: point, label: Poin, widget: string } }
       - { name: featured, label: Tampilkan di bagian utama, widget: boolean, default: false, hint: 'Hidup: project muncul langsung. Mati: hanya muncul setelah klik Show all.' }
       - { name: order, label: Urutan, widget: number, value_type: int, min: 0, default: 0, hint: 'Angka kecil tampil lebih dulu. Project baru bernilai 0, jadi muncul paling atas.' }
+
+  - name: site
+    label: Halaman situs
+    editor:
+      preview: false
+    files:
+      - name: profile
+        label: Profil dan kontak
+        file: src/data/site/profile.json
+        fields:
+          - { name: name, label: Nama lengkap, widget: string }
+          - { name: role, label: Jabatan, widget: string, hint: 'Tampil di bagian paling atas. Contoh: Web Developer & Data Analyst' }
+          - { name: location, label: Lokasi, widget: string }
+          - { name: intro, label: Kalimat pembuka, widget: text, hint: 'Satu atau dua kalimat di bawah nama pada halaman depan.' }
+          - { name: availability, label: Status ketersediaan, widget: string, hint: 'Contoh: Open to web development and data roles' }
+          - { name: email, label: Email, widget: string }
+          - { name: github, label: URL GitHub, widget: string, hint: 'Mulai dengan https://' }
+          - { name: linkedin, label: URL LinkedIn, widget: string, hint: 'Mulai dengan https://' }
+          - { name: cv, label: File CV (PDF), widget: file, hint: 'Upload PDF baru untuk mengganti CV yang bisa diunduh.' }
+          - { name: photo, label: Foto profil, widget: image, required: false, hint: 'Kosongkan untuk memakai ornamen batik di halaman depan.' }
+      - name: about
+        label: Tentang
+        file: src/data/site/about.json
+        fields:
+          - { name: paragraphs, label: Paragraf Tentang, widget: list, hint: 'Satu item per paragraf. Urutan bisa diubah dengan menyeret.', field: { name: paragraph, label: Paragraf, widget: text } }
+          - name: facts
+            label: Angka ringkas
+            widget: list
+            summary: '{{fields.value}} {{fields.label}}'
+            hint: 'Kotak angka di samping bagian Tentang. Contoh: 3.91 dan GPA out of 4.00.'
+            fields:
+              - { name: value, label: Angka, widget: string }
+              - { name: label, label: Keterangan, widget: string }
+          - { name: coreStack, label: Teknologi utama, widget: list, hint: 'Daftar teknologi yang tampil sebagai tag di bagian Tentang.', field: { name: tech, label: Teknologi, widget: string } }
+      - name: experience
+        label: Pengalaman
+        file: src/data/site/experience.json
+        fields:
+          - name: items
+            label: Pengalaman kerja
+            label_singular: Pengalaman
+            widget: list
+            summary: '{{fields.title}} · {{fields.org}}'
+            hint: 'Yang terbaru ditaruh paling atas. Urutan bisa diubah dengan menyeret.'
+            fields:
+              - { name: title, label: Posisi, widget: string }
+              - { name: org, label: Perusahaan atau lembaga, widget: string, hint: 'Contoh: CV. OmahIoT, Semarang' }
+              - { name: dates, label: Periode, widget: string, hint: 'Contoh: Jan 2026 – Present' }
+              - { name: points, label: Poin pekerjaan, widget: list, hint: 'Satu poin per baris: apa yang kamu kerjakan atau hasilkan.', field: { name: point, label: Poin, widget: text } }
+      - name: research
+        label: Riset dan publikasi
+        file: src/data/site/research.json
+        fields:
+          - name: items
+            label: Publikasi
+            label_singular: Publikasi
+            widget: list
+            summary: '{{fields.title}} ({{fields.year}})'
+            fields:
+              - { name: type, label: Jenis, widget: string, hint: 'Contoh: Journal article, Registered copyright' }
+              - { name: year, label: Tahun, widget: string }
+              - { name: title, label: Judul, widget: text }
+              - { name: venue, label: Jurnal atau penerbit, widget: string }
+              - { name: note, label: Catatan peran, widget: string, hint: 'Contoh: Co-author (second of five).' }
+              - { name: href, label: Link, widget: string, required: false, hint: 'Boleh kosong. Kalau diisi, judul jadi bisa diklik.' }
+      - name: skills
+        label: Skills
+        file: src/data/site/skills.json
+        fields:
+          - name: groups
+            label: Kelompok skill
+            label_singular: Kelompok
+            widget: list
+            summary: '{{fields.group}}'
+            fields:
+              - { name: group, label: Nama kelompok, widget: string, hint: 'Contoh: Web and backend' }
+              - { name: items, label: Skill, widget: list, hint: 'Satu skill per baris.', field: { name: skill, label: Skill, widget: string } }
+      - name: education
+        label: Pendidikan dan sertifikasi
+        file: src/data/site/education.json
+        fields:
+          - name: items
+            label: Pendidikan
+            label_singular: Pendidikan
+            widget: list
+            summary: '{{fields.school}} ({{fields.dates}})'
+            fields:
+              - { name: school, label: Sekolah atau kampus, widget: string }
+              - { name: detail, label: Program dan nilai, widget: string, hint: 'Contoh: Bachelor of Applied Science in Computer Engineering Technology, GPA 3.91/4.00' }
+              - { name: dates, label: Periode, widget: string, hint: 'Contoh: 2022 – 2026' }
+          - { name: certifications, label: Sertifikasi, widget: list, hint: 'Satu sertifikasi per baris, lengkap dengan tahunnya.', field: { name: certification, label: Sertifikasi, widget: string } }

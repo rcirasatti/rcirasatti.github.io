@@ -1,0 +1,48 @@
+{
+  "groups": [
+    {
+      "group": "Web and backend",
+      "items": [
+        "Laravel 11",
+        "PHP",
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Vite",
+        "Tailwind CSS",
+        "Bootstrap",
+        "REST API",
+        "MySQL",
+        "Odoo",
+        "Flutter",
+        "Figma"
+      ]
+    },
+    {
+      "group": "Data and machine learning",
+      "items": [
+        "Python",
+        "SQL",
+        "Pandas",
+        "NumPy",
+        "Scikit-learn",
+        "TensorFlow/Keras",
+        "XGBoost",
+        "Matplotlib/Seaborn",
+        "Streamlit",
+        "ETL",
+        "Time-series analysis"
+      ]
+    },
+    {
+      "group": "Tools",
+      "items": [
+        "Git",
+        "GitHub",
+        "Postman",
+        "MikroTik (MTCNA)",
+        "Database design"
+      ]
+    }
+  ]
+}

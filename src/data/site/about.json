@@ -1,0 +1,34 @@
+{
+  "paragraphs": [
+    "I am a Computer Engineering Technology graduate from Politeknik Negeri Semarang, now working at CV. OmahIoT. Most of my work is Laravel systems for institutions: portals, content management, an ERP, and the APIs that connect them.",
+    "Alongside that I work with data in Python. My thesis compared seven algorithms to estimate project costs inside an ERP, and I taught data science to a class of about 20 learners at Coding Camp.",
+    "Outside of code, I served as Deputy of Interests and Talents on the student executive board and chaired the RuPaWan painting exhibition."
+  ],
+  "facts": [
+    {
+      "value": "1+",
+      "label": "year of professional experience in web development and data"
+    },
+    {
+      "value": "3.91",
+      "label": "GPA out of 4.00, Politeknik Negeri Semarang"
+    },
+    {
+      "value": "2",
+      "label": "journal articles published in 2025"
+    },
+    {
+      "value": "1",
+      "label": "registered software copyright"
+    }
+  ],
+  "coreStack": [
+    "Laravel",
+    "PHP",
+    "React",
+    "MySQL",
+    "Python",
+    "Scikit-learn",
+    "TensorFlow/Keras"
+  ]
+}

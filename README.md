@@ -17,10 +17,15 @@ All text lives in `src/data/content.js`: profile, projects, experience, research
 
 Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and publishes `dist` to GitHub Pages. In the repository settings, Pages must use "GitHub Actions" as its source.
 
-## Editing projects
+## Editing content
 
-Projects are one JSON file each in `src/data/projects/`. Edit them by hand, or use the CMS at `/admin`
-(Decap CMS, which commits to `main` and triggers the deploy).
+All text on the site is stored as JSON and edited from the CMS at `/admin` (Decap CMS, which commits to
+`main` and triggers the deploy), or by hand:
+
+- `src/data/projects/*.json`: one file per project.
+- `src/data/site/*.json`: profile and contact, about, experience, research, skills, and education.
+
+`src/data/content.js` assembles them. Only the batik settings and the project categories live in code.
 
 ### One-time login setup
 
