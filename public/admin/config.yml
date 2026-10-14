@@ -19,8 +19,10 @@ collections:
     slug: '{{slug}}'
     summary: '{{title}} ({{year}})'
     sortable_fields: ['order', 'title', 'year']
+    editor:
+      preview: false
     fields:
-      - { name: order, label: Order (1 = first, new projects default to the top), widget: number, value_type: int, min: 0, default: 0 }
+      - { name: order, label: Order, widget: number, value_type: int, min: 0, default: 0, hint: 'Lower numbers show first. New projects start at 0, so they appear at the top.' }
       - { name: title, label: Title, widget: string }
       - { name: kind, label: Kind, widget: select, options: [{ label: Web & apps, value: web }, { label: Data & ML, value: data }, { label: Design & prototype, value: design }] }
       - { name: year, label: Year, widget: string, hint: 'For example 2026 or 2025–2026' }
