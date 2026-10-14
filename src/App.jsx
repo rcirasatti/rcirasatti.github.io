@@ -119,6 +119,10 @@ function Portrait({ motif }) {
   );
 }
 
+// The headline shows the first name on one line and the rest below it.
+const [firstName, ...restOfName] = profile.name.split(' ');
+const lastNames = restOfName.join(' ');
+
 const ROW_LABELS = { live: 'Live site', demo: 'Demo', code: 'Code' };
 
 function RowLink({ link }) {
@@ -318,9 +322,9 @@ export default function App() {
               {profile.role} · {profile.location}
             </p>
             <h1>
-              Rucirasatti
+              {firstName}
               <br />
-              <em>Nariswana</em>
+              <em>{lastNames}</em>
             </h1>
             <p className="lede">{profile.intro}</p>
             <p className="availability">{availability}</p>

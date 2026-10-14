@@ -57,8 +57,6 @@ collections:
 
   - name: site
     label: Halaman situs
-    editor:
-      preview: false
     files:
       - name: profile
         label: Profil dan kontak
