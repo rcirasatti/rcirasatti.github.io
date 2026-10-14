@@ -13,6 +13,7 @@
       "alt": "Home page of the Politeknik Negeri Semarang central portal"
     }
   ],
+  "thumbnail": "/img/polines.jpg",
   "summary": "The main Politeknik Negeri Semarang website, live at polines.ac.id, built on Laravel 11 with a content management system.",
   "points": [
     "Token-based REST API that receives news, agenda, and announcements from department CMSs.",

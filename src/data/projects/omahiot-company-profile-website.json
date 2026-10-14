@@ -19,6 +19,7 @@
       "caption": "First version, which I built in React and Vite."
     }
   ],
+  "thumbnail": "/img/omahiot.jpg",
   "summary": "The OmahIoT company website. I built the first version in React and Vite with a Laravel CMS, then designed the current site at omahiot.com.",
   "points": [],
   "stack": [

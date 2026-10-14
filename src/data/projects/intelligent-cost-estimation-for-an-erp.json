@@ -14,6 +14,7 @@
       "caption": "System architecture from the thesis."
     }
   ],
+  "thumbnail": "/img/thesis-architecture.jpg",
   "summary": "An Owner Estimate Cost (OEC) estimation feature for a project-management ERP, built by comparing seven algorithms on 110 real transactions.",
   "points": [
     "Linear Regression, SVR, Ridge, Random Forest, XGBoost, ANN, and Moving Average, ranked with Borda Count.",

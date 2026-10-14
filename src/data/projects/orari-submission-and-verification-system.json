@@ -13,6 +13,7 @@
       "caption": "Interface prototype."
     }
   ],
+  "thumbnail": "/img/orari.jpg",
   "summary": "A role-based system for submitting and verifying amateur radio (ORARI) applications. I designed the interface and built the initial Laravel prototype; a team continued development.",
   "points": [],
   "stack": [

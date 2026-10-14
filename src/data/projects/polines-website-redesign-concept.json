@@ -13,6 +13,7 @@
       "caption": "Redesign concept home page."
     }
   ],
+  "thumbnail": "/img/polines-redesign.jpg",
   "summary": "A redesign concept for polines.ac.id in React and TypeScript, with a sitemap and a style guide.",
   "points": [],
   "stack": [

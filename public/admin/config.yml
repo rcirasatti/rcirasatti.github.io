@@ -50,6 +50,7 @@ collections:
           - { name: src, label: File gambar, widget: image, hint: 'Upload gambar baru atau pilih yang sudah ada.' }
           - { name: alt, label: Deskripsi gambar, widget: string, hint: 'Satu kalimat yang menjelaskan isi gambar, untuk pembaca layar.' }
           - { name: caption, label: Keterangan, widget: string, required: false, hint: 'Tampil di bawah gambar. Boleh kosong.' }
+      - { name: thumbnail, label: Gambar sampul, widget: image, required: false, hint: 'Hanya untuk tampilan grid di admin ini, tidak tampil di situs. Pakai gambar yang sama dengan gambar pertama di atas.' }
       - { name: points, label: Poin penting, widget: list, required: false, hint: 'Hasil atau fitur utama, satu poin per baris. Boleh kosong.', field: { name: point, label: Poin, widget: string } }
       - { name: featured, label: Tampilkan di bagian utama, widget: boolean, default: false, hint: 'Hidup: project muncul langsung. Mati: hanya muncul setelah klik Show all.' }
       - { name: order, label: Urutan, widget: number, value_type: int, min: 0, default: 0, hint: 'Angka kecil tampil lebih dulu. Project baru bernilai 0, jadi muncul paling atas.' }

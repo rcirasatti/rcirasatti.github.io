@@ -13,6 +13,7 @@
       "caption": "Overview page, running on sample data."
     }
   ],
+  "thumbnail": "/img/yayasan.jpg",
   "summary": "A React and TypeScript interface prototype for a school foundation, with overview, financial management, and inventory pages running on sample data.",
   "points": [],
   "stack": [
