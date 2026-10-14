@@ -17,7 +17,7 @@ collections:
     format: json
     create: true
     slug: '{{slug}}'
-    summary: '{{title}} ({{year}})'
+    summary: '{{title}} ({{fields.year}})'
     sortable_fields: ['order', 'title', 'year']
     fields:
       - { name: title, label: Judul project, widget: string, hint: 'Nama project, singkat dan jelas.' }
